@@ -9,7 +9,7 @@ SUTD 50.040 Natural Language Processing custom project, 2026 September term.
 git clone https://github.com/wongkang01/patch2meta.git && cd patch2meta
 uv sync                       # Python 3.12, core deps
 uv add <package>              # add what your part needs, commit pyproject.toml and uv.lock
-uv run python -m patch2meta.notes.fetch   # raw patch notes, about 10 minutes
+uv run python -m patch2meta.notes.fetch   # raw patch notes for all patches, about 45 minutes
 ```
 
 On the SUTD GPU cluster (one shared group account), clone into the home directory, since only `~` survives restarts.
@@ -20,8 +20,8 @@ The account password is shared in the team chat, never in this repo.
 
 | Source | Gives | Coverage | Access |
 |---|---|---|---|
-| LoL Wiki version pages (`V9.22`) | Change lines in templated wikitext; patch chain and release dates | 9.1 to now | MediaWiki API |
-| Riot patch notes, en-us | The same lines plus Riot's rationale prose | 9.1 to now (the en-sg index only lists 12.17 on) | Public HTML |
+| [LoL Wiki version pages](https://wiki.leagueoflegends.com/en-us/V9.22) | Change lines in templated wikitext; patch chain and release dates | 9.1 to now | MediaWiki API |
+| [Riot patch notes, en-us](https://www.leagueoflegends.com/en-us/news/tags/patch-notes/) | The same lines plus Riot's rationale prose | 9.1 to now (the en-sg index only lists 12.17 on) | Public HTML |
 | Wayback Machine | Fallback if a Riot page disappears | First capture after release | CDX API |
 | gptilt (Leaguepedia) on Hugging Face | Pro games with picks and bans | 2011 to 2026 | HF datasets |
 | Oracle's Elixir | Cross-check, draft order | 2014 to 2026 | CSV downloads |
@@ -33,7 +33,7 @@ Riot adds "Mid-Patch Updates" sections after publishing; the parser must strip t
 
 ## Pipeline and owners
 
-Fill in names.
+Fill in names. Each person's instructions are in [`docs/tasks/`](docs/tasks/).
 
 | # | Owner | Owns | Writes |
 |---|---|---|---|
