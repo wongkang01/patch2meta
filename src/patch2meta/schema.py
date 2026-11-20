@@ -45,12 +45,15 @@ class Intent(StrEnum):
 
 
 class ChangeLine(BaseModel):
-    ability: str | None  # "Q - Piltover Peacemaker"; None for base stats or system lines
+    ability: str | None  # "Q - Piltover Peacemaker" (bare "Piltover Peacemaker" if Riot has no block);
+    # None for base stats, items, runes and system lines
     attribute: str  # "base damage"
     old: str | None  # raw text, e.g. "50/90/130/170/210"
     new: str | None
     rel_change: float | None  # mean relative change across ranks, None if not numeric
-    raw: str  # the original line
+    raw: str  # the whole line as plain text (wiki templates rendered, numbers kept)
+    tag: str | None  # the wiki's label: "Bug Fix", "New Effect", "Removed", "Undocumented", ...
+    gameplay: bool  # False for bug fixes and cosmetic lines (VFX, SFX, skins, icons, tooltips)
 
 
 class ChangeBlock(BaseModel):
@@ -59,9 +62,10 @@ class ChangeBlock(BaseModel):
     block_id: str  # f"{patch}:{kind}:{name}"
     patch: str
     kind: Literal["champion", "item", "rune", "system"]
-    name: str  # "Caitlyn", "Infinity Edge", "Dragon"
+    name: str  # "Caitlyn", "Infinity Edge"; system blocks use fixed names such as "Dragon", "Smite"
     rationale: str | None  # Riot's prose for this block; None when only the wiki was available
     lines: list[ChangeLine]
+    gameplay: bool  # any line is gameplay; False for blocks of only bug fixes and cosmetics
 
 
 class BlockLabel(BaseModel):
@@ -85,7 +89,7 @@ class ChampionPatch(BaseModel):
     prev_presence: float
     delta_presence: float  # presence - prev_presence: the main target
     fearless_share: float  # share of games on `patch` played in Fearless draft
-    changed: bool  # the notes for `patch` have a block for this champion
+    changed: bool  # the notes for `patch` have a gameplay block (ChangeBlock.gameplay) for this champion
 
 
 class Prediction(BaseModel):
