@@ -10,6 +10,7 @@ git clone https://github.com/wongkang01/patch2meta.git && cd patch2meta
 uv sync                       # Python 3.12, core deps
 uv add <package>              # add what your part needs, commit pyproject.toml and uv.lock
 uv run python -m patch2meta.notes.fetch   # raw patch notes for all patches, about 45 minutes
+uv run python -m patch2meta.notes.build   # data/processed/changes.jsonl and the labelling sample, seconds
 ```
 
 On the SUTD GPU cluster (one shared group account), clone into the home directory, since only `~` survives restarts.
@@ -58,6 +59,7 @@ Validate rows against it before writing, and change a contract only in a PR that
 |---|---|---|
 | `data/raw/patches.jsonl` | `PatchSource` | 1 |
 | `data/processed/changes.jsonl` | `ChangeBlock` | 1 |
+| `data/processed/changes_sample.csv` | 150 gameplay `ChangeBlock`s for hand labelling | 1 |
 | `data/processed/block_labels.jsonl` | `BlockLabel` | 5 |
 | `data/processed/labels.parquet` | `ChampionPatch` | 2 |
 | `data/predictions/<model>.csv` | `Prediction` | 3, 4, 5 |

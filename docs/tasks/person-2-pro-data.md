@@ -19,7 +19,7 @@ You build the target every model predicts, and the one piece of code that scores
 4. Per champion per patch: presence = (picks + bans) / games, then `delta_presence = presence - prev_presence`.
    Include every champion seen in pro play on either patch.
 5. Fearless draft: flag each tournament's format and store the share of Fearless games per patch in `fearless_share`.
-6. `changed`: join with `changes.jsonl` once person 1 has it; until then leave it `False`.
+6. `changed`: true when `changes.jsonl` has a block for the champion with `gameplay` true (bug-fix and cosmetic-only blocks do not count).
 7. Write `data/processed/labels.parquet` as `ChampionPatch` rows.
 8. Relation graph from the same games: partners (same team), counters (opposite teams, same role) and substitutes (same role), with counts as weights.
 9. Check whether draft order is available (Leaguepedia or Oracle's Elixir).
