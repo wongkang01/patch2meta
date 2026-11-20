@@ -1,7 +1,8 @@
 """Download raw patch notes for every League of Legends patch from 9.1 onward.
 
 Walks the LoL Wiki's patch chain (each version page links Prev/Next) and saves, per patch:
-  data/raw/wiki/<V9.22>.wikitext   change lines in templated wikitext (no Riot rationale)
+  data/raw/wiki/<V9.22>.wikitext   change lines in templated wikitext (no Riot rationale);
+                                   subpages such as V14.1/Items go to V14.1__Items.wikitext
   data/raw/riot/<V9.22>.html       official notes page with the rationale prose: the live en-us
                                    Riot page (still up back to 9.1; the en-sg index stops at 12.17),
                                    or, if that is gone, the first Wayback capture after release
@@ -116,6 +117,15 @@ def main() -> None:
                 print(f"{title}: not a released patch, stopping")
                 break
             (RAW / "wiki" / f"{title}.wikitext").write_text(wikitext)
+            # Big patches (10.23, 14.1) move item changes to a subpage such as [[V14.1/Items]].
+            for sub in sorted(set(re.findall(rf"\[\[({re.escape(title)}/[^\]|#]+)", wikitext))):
+                path = RAW / "wiki" / f"{sub.replace('/', '__')}.wikitext"
+                if args.force or not path.exists():
+                    got_sub = fetch_wikitext(client, sub)
+                    time.sleep(DELAY_S)
+                    if got_sub:
+                        path.write_text(got_sub[1])
+                        print(f"{title}: saved subpage {sub}")
 
             if title in done and (RAW / "riot" / f"{title}.html").exists():
                 row = done[title]
