@@ -1,4 +1,6 @@
-data/
+# Processed data is committed (see data/processed/MANIFEST.md); raw downloads stay local
+data/*
+!data/processed/
 .venv/
 __pycache__/
 *.egg-info/
