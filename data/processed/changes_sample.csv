@@ -1,0 +1,514 @@
+block_id,patch,kind,name,rationale,lines
+10.12:rune:Approach Velocity,10.12,rune,Approach Velocity,"Approach Velocity and Unflinching have very low pickrates and unintuitive functionality. The goal is to broaden them so more champions can use them, while also making them simpler so each rune is more understandable.","New Effect: Gain 7.5% bonus movement speed toward enemy champions with impaired movement within 1000 range. This bonus is doubled to 15% and does not have a range cap toward enemy champions whose movement you have impaired.
+Old Effect: Gain 15% bonus movement speed when moving toward a movement impaired allied champion, or toward an enemy champion whose movement you have impaired. Range: 1000."
+10.12:system:Dragon,10.12,system,Dragon,,"New Effect: Cloud zone bonus movement speed is increased to 35% while out-of-combat with champions.
+In front of each base's gates.
+In front of each tri-brush in the river.
+Near each tri-bush near Gromp.
+By the Wolf Camp.
+In front of each base's gates.
+In the alcoves.
+Bug Fix: Tooltip now accurately reflects its latest state."
+10.12:system:Ghost,10.12,system,Ghost,Ghost has been a non-viable summoner for many champions for a long time now. Adding some power that emphasizes its strengths relative to other summoner spells with a sustained mobility effect for those using it aggressively.,"Removed: Bonus movement speed no longer ramps up over 2 seconds.
+New Effect: Duration is now extended by 4 to 7 seconds upon scoring a takedown.
+Bonus movement speed reduced to 20 to 40% from 28 to 45%.
+Cooldown increased to 210 seconds from 180."
+10.13:champion:Yorick,10.13,champion,Yorick,"R range for Maiden of the Mist’s leash decreased.
+Making it so the Maiden leashes more responsively when Yorick exits a fight. We suspect this will be a small amount of power that skews towards the upper echelons of play where Yorick is currently weak.","Last Rites: Bug Fix: Mist Walkers are now able to properly activate Manaflow Band.
+R - Eulogy of the Isles: Maiden leash distance reduced to 600 units from 900."
+10.14:system:Ghost,10.14,system,Ghost,"Our changes to Ghost in patch 10.12 ended up being a small nerf with its increased cooldown, so we’re following up with a buff to speedily move it in the right direction.",Bonus movement speed increased to 24 to 48% from 20 to 40%.
+10.18:champion:Anivia,10.18,champion,Anivia,,"Crystallize: Bug Fix: No longer applies the Aspect of the Dragon debuff on enemy champions.
+Glacial Storm: Bug Fix: Storm SFX loop now plays correctly in Fog of War.
+Team Spirit Anivia, Bird of Prey Anivia, Noxus Hunter Anivia, and Prehistoric Anivia
+Bug Fix: Storm SFX loop now plays correctly in Fog of War.
+Armor material has been changed to the correct type, and will make metal sounds when she is hit by enemy champions.
+Bug Fix: Storm SFX loop now plays correctly in Fog of War.
+Bug Fix: Multiple sounds have been restored.
+Bug Fix: Death SFX when she is killed while in egg form has been restored.
+Bug Fix: SFX for the empowered hit has been restored.
+Bug Fix: SFX when the storm has reached its max size has been restored.
+Bug Fix: SFX when the storm is deactivated has been restored.
+Bug Fix: Max size SFX and ability deactivation SFX have been restored.
+Bug Fix: Armor material has been changed to the correct type, and will now make wood sounds when she is hit by enemy champions."
+10.18:system:Ignite,10.18,system,Ignite,"We got some more VFX updates for you in this patch! Bring in the lucky contestants: Malzahar, Nocturne, Viktor, and Ignite (yeah, we know this is not technically a champion). Once again, our goals for these sorts of smaller scope updates is to improve the overall gameplay clarity of VFX whilst bringing them up to modern League of Legends standards. This means that our efforts are primarily aimed at abilities which do not clearly communicate their hitbox.","Updated visual effects.
+Reduced overall noise while increasing clarity and timing."
+10.1:rune:Prototype: Omnistone,10.1,rune,Prototype: Omnistone,"Cooldown decreased.
+Omnistone continues to significantly underperform, so we're giving it a buff so it has enough power to compete with the other choices.","Cooldown for melee champions reduced to 5 / 4.5 / 4 to 3 seconds from 7 / 6 / 5 to 3.
+Cooldown for ranged champions reduced to 9 / 8.5 / 8 to 7 seconds from 11 / 10 / 9 to 7."
+10.21:rune:Nimbus Cloak,10.21,rune,Nimbus Cloak,"Nimbus Cloak’s popularity has begun to stifle rune choices, especially in the jungle. We’re weakening its power overall, with a specific target on its synergy with Smite.","Bonus movement speed changed to 5 / 20 / 35% from 10 / 20 / 30%.
+Duration reduced to 2 seconds from 2.5."
+10.23:item:Aegis of the Legion,10.23,item,Aegis of the Legion,"Epic items are the tier below Legendary: They're the mid-tier components of Legendary and Mythic items that build out of basic items. We're ensuring they serve their role as valuable building blocks, offering incremental stats and effects that smooth your progression toward bigger purchases. Like the Legendaries, we're providing blank-slate presentations of these Epics to give you a clean read on when you'll want to pick them up. New and updated have been mixed together since there aren't as many.
+Like Legendaries, some Epics are getting simple tuning passes, based on how we want you to build into the new and updated Legendary and Mythic items.","Updated icon.
+Recipe: Null-Magic Mantle + Cloth Armor + 750 gold = 1500 gold.
+Stats: 30 armor, 30 magic resistance, 10 ability haste.
+Builds Into: Gargoyle Stoneplate, Locket of the Iron Solari, Sunfire Aegis.
+Recipe: Null-Magic Mantle + Cloth Armor + 350 gold = 1100 gold.
+Stats: 30 armor, 30 magic resistance.
+Builds Into: Death's Dance, Locket of the Iron Solari, Zeke's Convergence."
+10.23:item:Infinity Edge,10.23,item,Infinity Edge,"Increased critical strike damage now scales with critical strike chance.
+Infinity Edge is an iconic and valuable part of the marksman ecosystem, but buying it first most every game left little room for anything else to compete. We've reenvisioned Infinity Edge in a Deathcap-esque form that increases in value as a crit build progresses, allowing it to remain a staple power-spike in crit builds without defining the marksman early game with its awkward build path and lack of utility.","Updated icon.
+Recipe: B. F. Sword + Pickaxe + Cloak of Agility + 625 gold = 3400 gold.
+Stats: 70 attack damage, 20% critical strike chance.
+Unique Passive - Perfection: Gain 0.4% bonus critical strike damage for every 1% critical strike chance.
+Limited to 1 Crit Modifier item.
+Recipe: B. F. Sword + Pickaxe + Cloak of Agility + 425 gold = 3400 gold.
+Stats: 80 attack damage, 25% critical strike chance.
+Unique Passive: Critical strikes deal 225% damage instead of 200%.
+Stats: 110 attack damage, 25% critical strike chance."
+10.23:item:Rageknife,10.23,item,Rageknife,Giving on-hit champs the flexibility to access Guinsoo's new crit-converting effect without completing Rageblade itself so they can spec into crit chance items first if the situation calls for it.,"New item
+Recipe: Dagger + Dagger + 200 gold = 800 gold.
+Stats: 25% attack speed.
+Unique Passive - Wrath: Deal 1.75 bonus physical damage on-hit for every 1% critical strike chance, up to 175 bonus physical damage on-hit at 100% critical strike chance, but can no longer critically strike. Damage applies to structures.
+Limited to 1 Crit Modifier item.
+Builds Into: Guinsoo's Rageblade."
+10.23:item:Rylai's Crystal Scepter,10.23,item,Rylai's Crystal Scepter,"Some items are only being returned to fit into preseason-the biggest change you'll find in any of the sections below is the addition or removal of stat types, but not entire unique effects (with Mikael's' regen-granting Harmony passive as an exception). As with the other Legendaries, keep in mind that Mythic passives add additional stats that aren't listed here, so things that look like flat nerfs are at least in part adjusting for that extra power.","Updated icon.
+Recipe: Blasting Wand + Giant's Belt + Amplifying Tome + 815 gold = 3000 gold.
+Stats: 90 ability power, 350 health.
+Unique Passive - Rimefrost: Damaging an enemy with an ability slows them 30% from 1 second.
+Limited to 1 Rylai's Crystal Scepter.
+Recipe: Blasting Wand + Amplifying Tome + Ruby Crystal + 915 gold = 2600 gold.
+Stats: 90 ability power, 300 health.
+Unique Passive: Damaging abilities and spells slow affected units by 20% for 1 second."
+10.23:rune:Time Warp Tonic,10.23,rune,Time Warp Tonic,Small clarity update to Time Warp Tonic as the cooldown on consumables was occasionally confusing to players for a minor rune.,"New Effect: No longer puts the consumable on cooldown, if consumables are stacked the instant restoration is applied after the duration of the initial consumable ends."
+10.25:champion:Twitch,10.25,champion,Twitch,"Q attack speed increased. W slow increased. R bonus damage increased.
+Both AP and AD Twitch are significantly underperforming. Our goals are for both to be viable ways to play him, but to stay true to his original gameplay design, we don't necessarily want his AP gameplay to be stronger than AD. For now, we're going to be buffing him in both styles of play, but it is possible that we will need further tuning adjustments as players get used to AP Twitch.","Q - Ambush: Bonus attack speed increased to 40 to 60% from 30 to 50%.
+W - Venom Cask: Slow increased to 30 to 50% from 25 to 45%.
+R - Spray and Pray: Bonus attack damage increased to 25 to 55 from 20 to 50."
+10.25:item:Hailblade,10.25,item,Hailblade,"Grouping some individual item changes since most of our item changes this patch can be easily categorized by class. A couple of notes on some specific items though: Muramana has started to see play as the optimal second item for several mage champions. We're changing its effect to physical damage to incentivize its target audience to pick it up (AD casters, where ya at), while laying the groundwork for potential buffs that won't encourage more mage poaching. And Seeker's Armguard was too efficient for its cost, so we're nudging down its power.","Enabled on Nexus Blitz.
+Removed: Basic attacks no longer apply one tick of damage."
+10.4:champion:Singed,10.4,champion,Singed,"Base health and armor decreased.
+Singed was pumped up on his plant-based potion before it was cool. While his healthy libations have been letting him conquer the top lane, we're going to make his triumphs a bit more risky by reducing his early tankiness.","Base health reduced to 580 from 610.
+Base armor reduced to 34 from 37."
+10.4:system:Combat rules,10.4,system,Combat rules,,"Slow resistance will now stack multiplicatively instead of linearly. As an example of the change, two 30% slow resistance effects will now reduce slows by 51% rather than 60%."
+10.5:champion:Lissandra,10.5,champion,Lissandra,"Q AP ratio increased.
+We're putting some power back into Lissandra's (cold) bread and (frozen) butter ability, so enemies know they can't just eat them willy nilly.",Q - Ice Shard: AP ratio increased to 80% AP from 70% AP.
+10.7:rune:Conditioning,10.7,rune,Conditioning,"Activation time increased.
+Conditioning has been overperforming, particularly for tanks and fighters. It should be a little more costly to one's early power for what it gives in the late-game. Not only is it a fine choice for anyone, it’s mandatory for tanks and fighters, where it stands head and shoulders above any other single rune.",Bonus resistance time increased to 12 minutes from 10.
+11.10:system:Jungle camps,11.10,system,Jungle camps,,"Attack damage reduced to 78 / 94 / 101 / 109 / 117 / 140 / 156 / 172 / 179 / 195 / 203 / 218 / 234 from 82 / 115 / 127 / 139 / 152 / 172 / 189 to 303.
+Health increased to 1850 / 2035 / 2313 / 2498 / 2683 / 2960 / 3238 from 1800 to 3150.
+Respawn time increased to 2:15 from 2:00.
+Attack damage reduced to 78 / 94 / 101 / 109 / 117 / 140 / 156 / 172 / 179 / 195 / 203 / 218 / 234 from 80 / 106 / 115 / 125 / 134 / 150 / 162 to 253.
+Gold increased to 90 gold from 85 gold.
+Respawn time increased to 2:15 from 2:00.
+Attack damage reduced to 78 / 94 / 101 / 109 / 117 / 140 / 156 / 172 / 179 / 195 / 203 / 218 / 234 from 80 / 112 / 124 / 136 / 148 / 168 / 184 to 296.
+Attack damage reduced to 20 / 24 / 26 / 28 / 30 / 36 / 40 / 44 / 46 / 50 / 52 / 56 / 60 from 25 / 35 / 39 / 43 / 46 / 53 / 58 to 93.
+Gold increased to 13 gold from 12 gold.
+Attack damage reduced to 13 / 16 / 17 / 18 / 20 / 23 / 26 / 29 / 30 / 33 / 34 / 36 / 39 from 17 / 24 / 26 / 29 / 31 / 36 / 39 / 43 / 46 / 49 / 53 / 56 / 60.
+Respawn time increased to 2:15 from 2:00.
+Gold increased to 65 gold from 55 gold.
+Attack damage reduced to 35 / 42 / 46 / 49 / 53 / 63 / 70 / 77 / 81 / 88 / 91 / 98 / 105 from 42 / 59 / 65 / 71 / 78 / 88 / 97 to 155.
+Attack damage reduced to 10 / 12 / 13 / 14 / 15 / 18 / 20 / 22 / 23 / 25 / 26 / 28 / 30 from 16 / 22 / 25 / 27 / 30 / 34 / 37 to 59.
+Respawn time increased to 2:15 from 2:00.
+Gold increased to 45 gold from 35 gold.
+Attack damage reduced to 20 / 24 / 26 / 28 / 30 / 36 / 40 / 44 / 46 / 50 / 52 / 56 / 60 from 20 / 28 / 31 / 34 / 37 / 42 / 46 to 74.
+Attack damage reduced to 10 / 12 / 13 / 14 / 15 / 18 / 20 / 22 / 23 / 25 / 26 / 28 / 30 from 13.33 / 19.33 / 22.33 / 24.33 / 27.33 / 31.33 / 34.33 to 56.33.
+Attack damage reduced to 78 / 94 / 101 / 109 / 117 / 140 / 156 / 172 / 179 / 195 / 203 / 218 / 234 from 82 / 115 / 127 / 139 / 152 / 172 / 189 to 303.
+Health increased to 1850 / 2035 / 2313 / 2498 / 2683 / 2960 / 3238 from 1800 to 3150."
+11.11:champion:Lee Sin,11.11,champion,Lee Sin,"E cooldown increased.
+Lee’s buff in patch 11.8 shot him higher than anticipated in every role (jungle, top, and mid), so we’re partially pulling it back.",E - Tempest: Cooldown increased to 9 seconds from 8.
+11.13:rune:Nimbus Cloak,11.13,rune,Nimbus Cloak,"As part of the mobility changes above, we’re pulling back on Nimbus Cloak’s bonus movement speed.",Bonus movement speed reduced to 5 / 20 / 25% from 5 / 20 / 35%.
+11.13:system:Smite,11.13,system,Smite,"Challenging and Chilling Smite give junglers early access to true damage against minions, which is especially punishing to early ranks of ultimate-summoned pets like Tibbers, H-28Q Apex Turret, Daisy, and the Maiden of the Mist. We're adding a damage modifier to Challenging and Chilling Smite so that smiting pets can still remain as a strategic choice for junglers throughout the game, but they aren’t able to completely obliterate low-rank ultimate pets as soon as Smite upgrades. And a reminder: minions includes pets, but doesn’t include monsters—so monster damage numbers remain unchanged here.","Damage to minions and pets changed to 500 (+ 10% of target's maximum health) from 900.
+Damage to minions and pets changed to 500 (+ 10% of target's maximum health) from 900."
+11.15:champion:Gwen,11.15,champion,Gwen,"E bonus attack speed decreased early.
+Equipped with raw stat power and a big ol’ pair of scissors, it’s a little too easy for Gwen to snip back at even the toughest of opponents. We’re looking to sharpen her intended weakness by tapping down the speed of her slashes from level 1.",E - Skip ‘n Slash: Bonus attack speed reduced to 20 to 80% from 40 to 80%.
+11.16:champion:Maokai,11.16,champion,Maokai,"Passive heal increased. E detonation damage decreased.
+Top Maokai has been struggling to stay in lane even with his tank builds, so we’re increasing his sustain. On the other hand, Support Mao and his saplings have been causing a commotion in the bot lane, where AP builds offer powerful scaling. Maokai will still have strong poke, but we’re toning it down. One more thing: Maokai's original passive values were bugged. He was healing for less of his maximum health (5-13% instead of 6-13%) and it wasn’t scaling properly (it was scaling linearly at every level instead of its intended breakpoints of level 1/6/9…). so the previous values of his passive’s heal reflect the bugged, in-game values. Now, the scaling has been corrected, and the heal from his maximum health has an even bigger bump than his tooltip would have you believe.","Passive - Sap Magic: Heal health ratio increased to 7 / 8.5 / 10 to 15% maximum health from 6 / 7.5 / 9 to 13%.
+E - Sapling Toss: Base damage reduced to 20 to 120 from 25 to 125.
+E - Sapling Toss: Empowered base damage reduced to 40 to 240 from 50 to 250.
+E - Sapling Toss: AP ratio reduced to 0.7% per 100 AP from 0.8% per 100 AP.
+E - Sapling Toss: Empowered AP ratio reduced to 1.4% per 100 AP from 1.6% per 100 AP."
+11.17:item:Divine Sunderer,11.17,item,Divine Sunderer,"Divine Sunderer has been the go-to choice for fighters all across the spectrum, and even some marksmen. We're looking to nerf its generic power to let its more aggressive item competitors outshine it when they're supposed to.",Attack damage reduced to 35 from 40.
+11.18:rune:Predator,11.18,rune,Predator,"Increasing Predator's ganking power to push it up to Pro viability for junglers who gotta go fast—like former users Skarner, Hecarim, and Lillia.","Maximum bonus movement speed increased to 60% from 45%.
+Bonus movement speed ramp up time reduced to 1 second from 1.5."
+11.1:champion:Rakan,11.1,champion,Rakan,,Base magic resistance reduced to 32 from 32.1.
+11.20:item:Guardian Angel,11.20,item,Guardian Angel,,"Bug Fix: Fixed a bug where certain summoner spells could be used while in the resurrecting state.
+Cooldown for summoner spells restored."
+11.20:system:Jungle camps,11.20,system,Jungle camps,,"Attack damage reduced to 74 / 89 / 96 / 104 / 111 / 133 / 148 / 163 / 170 / 185 / 192 / 207 / 222 from 78 / 94 / 101 / 109 / 117 / 140 / 156 / 172 / 179 / 195 / 203 / 218 / 234.
+Attack damage reduced to 74 / 89 / 96 / 104 / 111 / 133 / 148 / 163 / 170 / 185 / 192 / 207 / 222 from 78 / 94 / 101 / 109 / 117 / 140 / 156 / 172 / 179 / 195 / 203 / 218 / 234."
+11.23:item:Lost Chapter,11.23,item,Lost Chapter,,Now builds into Crown of the Shattered Queen.
+11.23:rune:Glacial Augment,11.23,rune,Glacial Augment,"Some champions were using Glacial Augment's Freeze Ray to CC enemies before casting skillshots to guarantee a wombo combo, which—though clever—wasn’t the intended design. This updated version should appeal to tanks and some enchanters without removing skill expression. We think it'll be particularly useful to defend allies or amplify huge engages.","Immobilizing an enemy champion will cause 3 glacial rays to emanate from them towards you and other nearby enemy champions, creating icy zones that slow enemies within by 35% (+ 2% per 100 AP) (+ 2% per 100 bonus AD) (+ 5% per 10% heal and shield power) and reducing their damage by 15% against your allies, excluding yourself, for 3 (+ 100% of the immobilizing effect's duration) seconds.
+Cooldown: 25 seconds.
+Glacial Augment: Basic attacks on-hit slow enemy champions by 45 to 55 (melee) / 30 to 40 (ranged) for 2 seconds, which increases in effectiveness over the duration. This effect cannot occur on the same target more than once every few seconds.
+Cooldown: 7 to 4 (per target) seconds.
+Freeze Ray: Slowing an enemy champion with an item active creates a 600-unit frozen line in their direction for 5 seconds, slowing all enemies within by 60%. The Freeze Ray can fire upon any number of champions concurrently, and has no cooldown."
+11.24:rune:Lethal Tempo,11.24,rune,Lethal Tempo,"Lethal Tempo is a little too strong for some melee champions. It's also failing to fulfill its attack speed fantasy for ranged users, so we're shifting some of the power from its bonus attack range for them.","Bonus attack speed per stack changed to 13% (melee) / 7% (ranged) from 15% (melee) / 5% (ranged).
+Maximum bonus attack speed changed to 78% (melee) / 42% (ranged) from 90% (melee) / 30% (ranged).
+Bonus attack range for ranged champions reduced to 75 from 100."
+11.2:champion:Azir,11.2,champion,Azir,"Q cooldown decreased.
+Azir lost the cooldowns on Nashor’s Tooth and thus, some of the wind beneath his wings. We’re giving him a lift by returning some of it directly into his kit.","Q - Conquering Sands: Cooldown reduced to 14 to 6 seconds from 15 to 7.
+Arise!: Bug Fix: Soldiers now properly stack Tear of the Goddess Mana Charge."
+11.2:item:Galeforce,11.2,item,Galeforce,"Galeforce is outperforming the other marksmen Mythics, both in the “crit chance” space and for champions who can flex into Lethality. As such, we’re pulling back some of the power we gave Galeforce in earlier patches.",Cooldown increased to 90 seconds from 60.
+11.2:item:Sunfire Aegis,11.2,item,Sunfire Aegis,"We’re lowering the cost of some of the utility Lethality items to create a new division of 2600 gold AD items, both for AD supports and traditional assassins.",Mythic passive changed to 5% tenacity and slow resistance from 5 ability haste.
+11.6:rune:Fleet Footwork,11.6,rune,Fleet Footwork,"Although useful on a number of champions, this rune is a bit too generous with its sustain for AP champions, so we’re targeting that.",AP ratio reduced to 20% AP from 30% AP.
+11.6:system:Smite,11.6,system,Smite,"Alongside Gromp’s buff and the hit to Ravenous Hunter, we’re adding an extra healing bump by giving some base healing to make it less treacherous for the junglers who are less tanky and struggle to sustain themselves.",Base heal increased to 90 from 70.
+11.6:system:Teleport,11.6,system,Teleport,"Addressing unintuitive and frustrating scenarios around Teleport, such as Teleporting and zooming right back into lane after an early death. In compensation, we’re giving it a buff to maintain its power as a playmaking tool.","Bonus movement speed increased to 50% at all levels from 30 / 40 / 50%.
+Cooldown reduced to 420 to 210 seconds from 420 to 240.
+New Effect: Now removes homestart and homeguard bonus movement speed.
+Bug Fix: Formatting and vocabulary in the in-game tooltip changed."
+12.10:champion:Fiora,12.10,champion,Fiora,"Because today’s update touches *checks notes* almost every single champion in League, we’re going to spare our mental and won’t write context for every single champ. That being said, in addition to the durability update, we have a few unrelated QoL follow-ups for Swain's recent rework. So skip ahead for your favorite bird tactician.","Base health increased to 620 from 550.
+Health growth increased to 99 from 85.
+Armor growth increased to 4.7 from 3.5.
+Magic resistance growth increased to 2.05 from 1.25.
+Duelist's Dance: Base heal reduced to 35 to 100 from 40 to 115.
+Grand Challenge: Base heal per second reduced to 75 to 125 from 80 to 140."
+12.10:champion:Nunu,12.10,champion,Nunu,"Because today’s update touches *checks notes* almost every single champion in League, we’re going to spare our mental and won’t write context for every single champ. That being said, in addition to the durability update, we have a few unrelated QoL follow-ups for Swain's recent rework. So skip ahead for your favorite bird tactician.","Base health increased to 610 from 540.
+Health growth increased to 90 from 76.
+Armor growth increased to 4.2 from 3.
+Magic resistance growth increased to 2.05 from 1.25.
+Consume: Base heal reduced to 65 to 185 from 75 to 215.
+Consume: Heal AP ratio reduced to 70% AP from 90% AP.
+Consume: Heal health ratio reduced to 6% bonus health from 10%."
+12.10:rune:Guardian,12.10,rune,Guardian,,"Base shield reduced to 45 to 120 from 50 to 130.
+AP ratio reduced to 12.5% AP from 15% AP.
+Bonus health ratio reduced to 8% bonus health from 9%."
+12.10:rune:Summon Aery,12.10,rune,Summon Aery,,"Base shield reduced to 30 to 75 from 35 to 80.
+Shield bonus AD ratio reduced to 35% bonus AD from 40%.
+Shield AP ratio reduced to 22.5% AP from 25% AP."
+12.10:system:Baron Nashor,12.10,system,Baron Nashor,,"Attack damage increased to 350 / 370 / 390 / 410 / 430 / 450 / 470 / 490 / 510 / 520 from 285 / 300 / 315 / 330 / 345 / 360 / 375 / 390 / 405 / 420 / 435.
+Void Corruption base damage increased to 70 from 60.
+New Effect: Now waits 30 seconds after it leaves combat (dealing or taking damage) before it can level up and gain stats, most importantly health."
+12.10:system:Combat rules,12.10,system,Combat rules,,"Standard effect reduced to 30% from 40%.
+Enhanced effect reduced to 50% from 60%."
+12.14:champion:Seraphine,12.14,champion,Seraphine,"W shield and heal AP scaling decreased.
+Seraphine's taken center stage as a result of the Champion Durability Update and her recent buffs in 12.12. While she shines brightest as a bot carry, her mid and support performances are also extraordinary. In order to help tone her down we're reducing how effectively she can support allies when itemizing AP by decreasing her AP ratios.","W - Surround Sound: Shield AP ratio reduced to 25% AP from 35% AP.
+W - Surround Sound: Heal AP ratio reduced to 0.4% per 100 AP from 0.6% per 100 AP."
+12.14:item:Staff of Flowing Water,12.14,item,Staff of Flowing Water,,Heal and shield power reduced to 8% from 10%.
+12.14:rune:Scorch,12.14,rune,Scorch,,Damage increased to 20 to 40 from 15 to 35.
+12.14:rune:Sudden Impact,12.14,rune,Sudden Impact,,"Lethality increased to 9 from 7.
+Magic penetration increased to 7 from 6."
+12.15:item:Mercurial Scimitar,12.15,item,Mercurial Scimitar,"Mercurial Scimitar hasn’t been as appealing recently given its role as an important itemization option that provides magic resist, critical strike chance, and a built-in cc removal effect. We’re increasing the benefits that come with this item to make it a little more tempting of an option compared to the other sword items carries can opt for.","Magic resistance increased to 40 from 30.
+Bonus movement speed duration increased to 1.5 seconds from 1."
+12.15:rune:First Strike,12.15,rune,First Strike,First strike has risen to prominence as the go-to choice for burst champions in the current meta. We’re reining in a bit of its burst potential which should also decrease the amount of gold this Rune can generate.,Bonus damage reduced to 9% from 10%.
+12.16:champion:Draven,12.16,champion,Draven,"Q base damage decreased.
+Draven has been an axe juggling terror in Elite brackets of play since his post-Durability Update buffs in patch 12.10. We’re rolling back the base damage portion of these buffs which helped him reach dominance in the bot lane.",Q - Spinning Axe: Base damage reduced to 40 to 60 from 45 to 65.
+12.1:system:Bounties,12.1,system,Bounties,,Targets with an active objective bounty now have different health bars to indicate that status.
+12.20:champion:Gwen,12.20,champion,Gwen,"Q base damage increased.
+Gwen hasn't been scary in quite a while as she currently needs to get into late game to start gaining an edge over her opponents. We're sharpening her mid-game power a tad to help her better compete with other, similar fighters.","Q - Snip Snip!: Base damage per snip increased to 10 to 30 from 10 to 26.
+Q - Snip Snip!: Final snip base damage increased to 60 to 160 from 60 to 140."
+12.22:item:Scorchclaw Pup,12.22,item,Scorchclaw Pup,,"New item
+Replaces Emberknife and Hailblade.
+Cost: 450 gold
+Unique Passive - Jungle Companions: Summon a Scorchclaw Pup companion to assist you in combat against monsters.
+Unique Passive - Scorchclaw's Slash: Feed the companion treats to evolve it and upgrade your Smite. Upon the companion reaching its final evolution, this item is consumed, granting you the Scorchclaw's Slash buff:
+Gain 3 Ember stacks every 0.5 seconds, up to 100. Killing a large monster grants maximum stacks. When fully stacked, your next instance of damage against an enemy champion burns them and all enemies within 250 units of them, dealing bonus true damage equal to 4% of the target's maximum health over 4 seconds and slowing them by 30% decaying over 2 seconds.
+Limited to 1 Jungle / Support item."
+12.2:system:Dragon,12.2,system,Dragon,,"Maximum bonus damage increased to 12% from 10%.
+Stealth timer increased to 2.5 seconds from 1.5.
+New Effect: Camouflage is now based on out of combat timer instead of instantly stealthing upon entering.
+Bug Fix: The exclamation point stealth indicator has been fixed and will correctly reappear above your champion if you are visible to an enemy inside the Chemtech Fog after completing certain stealthing abilities.
+Bleed out timer reduced to 3 seconds from 4.
+Base health ratio reduced to 70% base health from 80%.
+Bonus health ratio reduced to 40% bonus health from 50%.
+Base damage reduced to 25 to 50 from 25 to 75."
+12.3:system:Dragon,12.3,system,Dragon,,"Champions taking hex-gates channel for 0.75 seconds, then upon completion dash to the other side of the gate over 2.25 seconds while being untargetable. They can additionally choose a direction to blink to 500 units away from the gate upon arrival.
+Champions taking the gate will still always blink to their designated location.
+The location still cannot be chosen over terrain.
+Champions taking hex-gates channel for 0.75 seconds, then upon completion blink to the other side of the gate over 2.25 seconds while vanished. They can additionally choose a direction to blink to 500 units away from the gate upon arrival."
+12.4:item:Knight's Vow,12.4,item,Knight's Vow,,"Combine cost reduced to 400 gold from 700 gold.
+Total cost unchanged.
+Base health regeneration increased to 200% from 150%."
+12.5:item:Hullbreaker,12.5,item,Hullbreaker,"Ranged Hullbreaker users have been taking over top lane, so we’re decreasing its benefits for them. Hullbreaker should still feel like an option for ranged champs, but without overshadowing melee users.","Boarding Party bonus resistances for ranged champions reduced to 10 to 30 from 20 to 60.
+Boarding Party minion bonus resistances for ranged champions reduced to 10*3 to 30*3 from 20*3 to 60*3."
+13.10:item:Immortal Shieldbow,13.10,item,Immortal Shieldbow,"Demoting Immortal Shieldbow to a legendary item meant trimming its statline down somewhat. Shieldbow makes sense as a generically-accessible source of anti-burst for crit users, so it’s got an easy-to-appreciate stat profile of attack damage. One note of caution: Shieldbow is not meant to be bought early as its shield does not increase until level 12.","Recipe: Pickaxe + Cloak of Agility + Vampiric Scepter + 625 gold = 3000 gold.
+Stats: 50 attack damage, 20% critical strike chance, 7% life steal.
+Unique Passive - Lifeline: If you would take damage that would reduce you below 30% of your maximum health, you first gain a shield that absorbs 215 to 500 damage for 3 seconds and 30% bonus attack speed for 8 seconds (90 second cooldown).
+Limited to 1 Lifeline item.
+Recipe: Noonquiver + Cloak of Agility + Vampiric Scepter + 600 gold = 3400 gold.
+Stats: 50 attack damage, 20% attack speed, 20% critical strike chance, 7% life steal.
+Unique Passive - Lifeline: If you would take damage that would reduce you below 30% of your maximum health, you first gain a shield that absorbs 250 to 630 damage for 3 seconds and 15 to 35 bonus attack damage for 8 seconds (90 second cooldown).
+Mythic Passive: Empowers other Legendary items with 5 bonus attack damage and 70 bonus health.
+Limited to 1 Lifeline item.
+Limited to 1 Mythic item.
+Stats: 65 attack damage, 30% attack speed, 20% critical strike chance, 8% life steal."
+13.10:system:Teleport,13.10,system,Teleport,,"Unleashed Teleport timer reduced to 10:00 from 14:00.
+Unleashed Teleport cooldown increased to 330 to 240 seconds from 240.
+Bug Fix: Icon for Unleashed Teleport is now properly updated from Teleport's icon at all times instead of only until exiting fog of war."
+13.11:item:Duskblade of Draktharr,13.11,item,Duskblade of Draktharr,,"Nightstalker bonus damage increased to 0 to 20% from 0 to 15%.
+Bug Fix: Nightstalker's untargetability now properly renders the user invalid to abilities even if they were cast before the fact"
+13.14:system:Jungle camps,13.14,system,Jungle camps,,"True damage reduced to 10 to 75 from 10 to 78.
+Slow for melee champions reduced to 5 to 20% from 10 to 20%.
+Ability haste changed to 5 to 20 from 10 at all levels.
+Bug Fix: Monsters no longer loop their animations while being displaced."
+13.16:champion:Malzahar,13.16,champion,Malzahar,"E damage tick rate increased, minion execute threshold decreased.
+In this patch we’re adding some small quality of life changes to Malzahar’s Malefic Visions to address some consistency issues with last hitting using E. While the lower minion execute threshold might look like a nerf, when combined with the faster damage tick rate this should result in players more reliably getting last hits on minions and that sweet, sweet gold.","E - Malefic Visions: Tick rate reduced to 1 per 0.25 seconds from 1 per 0.5.
+E - Malefic Visions: Minion execute threshold reduced to 10 to 30 health from 15 to 45 health."
+13.16:champion:Nidalee,13.16,champion,Nidalee,"E AD scaling added.
+In this patch we’re looking to give AD Nidalee a little help in her cougar form so her swipes pack some punch. We’re not looking to make drastic changes to AD Nid, but just give her a little more support at the time.","Bug Fix: Several issues with voice line playback have been resolved.
+E - Swipe: New Effect: Now scales with 40% bonus AD."
+13.17:item:Bloodthirster,13.17,item,Bloodthirster,"Bloodthirster is just slightly over-performing as a greedy purchase for winning players. It's proven to be in pretty solid shape for an item and we're happy that players can't easily stack two shields in the same build, but it just needs a small tuning pass. The rule update here aligns it with Absolute Focus, which is nice for consistency's sake so that these effects both leave and return at the same time.",Engorge health threshold increased to 70% maximum health from 50%.
+13.17:rune:Future's Market,13.17,rune,Future's Market,"Future’s Market is simply an overperforming rune and is being consistently picked by junglers, more so than any other role. This change should help balance rune options and very slightly lower jungle power.","Base debt reduced to 100 gold from 145 gold.
+Debt per minute increased to 8 gold from 5 gold."
+13.17:system:Dragon,13.17,system,Dragon,,"New Effect: Dragons now have a patience bar and leashing range indicator.
+Removed: Dragons no longer instantly reset aggression once they leave their leash range."
+13.18:champion:Kayn,13.18,champion,Kayn,"Passive Darkin healing adjusted. Darkin R damage decreased.
+Last patch we attempted to nerf both Shadow Assassin and Darkin Kayn. While his numbers went down, we also buffed one of Darkin Kayn’s key items, which means we only achieved our goals on one of his two forms. This patch, we're making good on our goals to weaken his Darkin form. It's worth noting that a Kayn who's doing well transforms around level 8, and the old version of his Darkin passive scaled from level 1. This change makes the healing more clear and ultimately nerfs his late game.","Passive - The Darkin Scythe: Darkin healing changed to 25% of damage dealt at all levels from 20 to 30%.
+R - Umbral Trespass: Darkin damage bonus AD ratio reduced to 10% per bonus AD from 13%.
+R - Umbral Trespass: Darkin heal bonus AD ratio reduced to 6.5% per 100 bonus AD from 8.45%."
+13.19:item:Randuin's Omen,13.19,item,Randuin's Omen,"Some items are highly specific in their niche, and that's perfectly fine. However, it's important that these items are strong in their appropriate game states. Randuin's Omen should be the go-to anti-crit item, but its price and overall efficiency make it bad, even when the opposing team's champions suggest it should be good. A 10% cheaper Randuin's Omen (now matching many other tank legendaries) should make it best in slot when critical strikes are the primary damage you're receiving without it becoming the default tank armor item.","Total cost reduced to 2700 gold from 3000 gold.
+Combine cost reduced to 800 gold from 1100 gold."
+13.1:champion:Shaco,13.1,champion,Shaco,"Q mana cost decreased, backstab damage increased. E AD ratio increased.
+Famously (or infamously), Shaco has quite a few builds he can kill you with, his AD build has fallen pretty low in terms of effectiveness. In this patch, we’re increasing its burst a little to keep it a viable build option. On top of that, we’re also bringing Q’s mana cost down which should help since AD Shaco doesn’t build any mana items. Really, we just want to see more of the clown in the game. All right, now you can go check out the changes.","Q - Deceive: Mana cost reduced to 40 from 60.
+Q - Deceive: Backstab critical strike damage increased to 40% from 30%.
+E - Two-Shiv Poison: Bonus AD ratio increased to 80% bonus AD from 75%."
+13.20:rune:Fleet Footwork,13.20,rune,Fleet Footwork,"While most of the changes we've talked about thus far target gold access, these adjustments target how effective gold is in the rune system. The goal is to reduce snowballing by decreasing gold scaling through the rune system, as players already get plenty of power from item and experience leads, not to mention the ratios on these runes are more of a hidden power. Even though our main intention is to reduce snowballing, a secondary goal of these adjustments is to reduce the amount of damage in League. Our approach to these changes was to increase the base values of these Runes so that they are still reasonably impactful early game, but have them start to fall off once more items and other means of damage are purchased.","Base heal increased to 10 to 130 from 10 to 100.
+AD ratio reduced to 10% bonus AD from 30% bonus AD.
+AP ratio reduced to 5% AP from 20% AP."
+13.20:rune:Press the Attack,13.20,rune,Press the Attack,"While most of the changes we've talked about thus far target gold access, these adjustments target how effective gold is in the rune system. The goal is to reduce snowballing by decreasing gold scaling through the rune system, as players already get plenty of power from item and experience leads, not to mention the ratios on these runes are more of a hidden power. Even though our main intention is to reduce snowballing, a secondary goal of these adjustments is to reduce the amount of damage in League. Our approach to these changes was to increase the base values of these Runes so that they are still reasonably impactful early game, but have them start to fall off once more items and other means of damage are purchased.",Damage amplifier reduced to 8% at all levels from 8 to 12%.
+13.21:champion:Bel'Veth,13.21,champion,Bel'Veth,"E cooldown decreased.
+Last patch we succeeded in taking our Void Empress down a peg, but we didn’t intend for the nerfs to completely dethrone her. With that in mind, we’re dialing back the nerfs a bit. Now that her E isn’t such a strong early game defensive tool we’re more comfortable giving it some power in the form of a reduced cooldown for more consistent access to this ability.",E - Royal Maelstrom: Cooldown reduced to 20 to 16 seconds from 24 to 18.
+13.22:system:Vision,13.22,system,Vision,,"Fog of War attacker reveal duration reduced to 2 seconds from 4.5.
+Fog of War attacker reveal radius reduced to 300 units from 400."
+13.3:rune:Overheal,13.3,rune,Overheal,"Overheal changes were intended to ship with 13.2, but because we only micropatched with 13.1b this change was held back until now. Overheal is stronger for everyone and especially stronger for marksmen because the rune is weak and because players can hopefully opt into running it in games where they need that extra durability.","Base shield increased to 20 to 280 / 285 to 300 from 10 at all levels.
+Removed: Shield no longer scales with 9% maximum health."
+13.4:item:Targon's Buckler,13.4,item,Targon's Buckler,"Since the Durability Update, ranged supports have reigned supreme and melee supports have had to rely much more on finding early lane kills. Our goal with these changes is to even out the power of the two classes (alongside the champion specific buffs from 13.3) by more closely syncing the time supports get their ward upgrades and improving the balance of health regeneration and spell spamming in lane.",Health regeneration increased to 75% from 50%.
+13.6:rune:Legend: Bloodline,13.6,rune,Legend: Bloodline,"Bloodline is the most-picked ADC rune in the Legend slot by far and is contributing to ADCs being generically tanky instead of opting into durability when it's needed. The rune is meant to be a choice, not automatic.","Life steal per stack reduced to 0.35% from 0.4%.
+Maximum life steal reduced to 5.25% from 6%.
+Bonus health reduced to 85 from 100."
+13.6:system:Dragon,13.6,system,Dragon,,"Base slow reduced to 40% (melee) / 30% (ranged) from 45% (melee) / 35% (ranged).
+Ability haste reduced to 7.5 to 7.5*4 from 9 to 9*4.
+Bonus attack speed reduced to 7.5 to 7.5*4% from 9 to 9*4%.
+Bonus attack damage and ability power reduced to 5 to 5*4% from 6 to 6*4%.
+Bonus resistances reduced to 8 to 8*4% from 9 to 9*4%
+Health regeneration reduced to 2.5 to 2.5*4% missing health from 3 to 3*4%."
+14.10:rune:Predator,14.10,rune,Predator,"We've been unhappy with Predator being strong and have intentionally kept it weak for a long time, now is the best time for it to finally go.","Removed
+Removed from the game."
+14.12:champion:Ashe,14.12,champion,Ashe,"Passive damage decreased.
+Ashe is quite strong right now thanks to the itemization changes as she's not really bound to crit chance. We're nerfing her sustained damage in a way that incentivizes buying crit again and makes her early-game all-ins less powerful.",Passive - Frost Shot: Bonus damage reduced to 115% from 120%.
+14.15:champion:Yasuo,14.15,champion,Yasuo,"Base armor increased. E damage increased.
+Yasuo’s early game should be much more active than current and he should be able to rely on short trades around his E to get an edge in the early game. As Yasuo’s currently weaker than he ought to be, these are strict buffs to the OG wind samurai.","Base armor increased to 32 from 30.
+E - Sweeping Blade: Base damage increased to 70 to 130 from 60 to 100.
+E - Sweeping Blade: Bonus damage per stack increased to 25% at all levels from 15 to 25%."
+14.15:item:Void Staff,14.15,item,Void Staff,We buffed Void Staff a little bit ago and we’d like to go a bit harder to ensure that it’s clearly an exciting piece for burst mages.,Ability power increased to 95 from 90.
+14.16:champion:Skarner,14.16,champion,Skarner,"Base health and attack damage increased. Q AD ratio increased.
+Skarner still isn't doing too well, so we're continuing to bring up his ability to tank and scrap with either jungle camps or top laners in the early game. We also want to help out his old juggernaut players, so we're buffing his AD ratios to make that build more appealing.","Base health increased to 630 from 610.
+Base attack damage increased to 63 from 60.
+Q - Shattered Earth / Upheaval: Bonus AD ratio increased to 80% bonus AD from 60%.
+Q - Shattered Earth / Upheaval: Bonus AD ratio increased to 80% bonus AD from 60%."
+14.17:champion:Caitlyn,14.17,champion,Caitlyn,"Attack Speed Ratio increased. W cooldown decreased.
+While Caitlyn isn’t winning as many games as is fair for her, she’s still very good at knocking down turrets and pushing waves, so we’re avoiding giving her more early game damage as we feel her lane state is good, but want to bring her up and are aware that Fleet Footwork’s nerfs this patch will affect her. So we’re giving her more traps and better synergy with attack speed items so that she can do more than just dominate the lane and hope to one-shot her opponents.","Attack speed ratio increased to 0.61 from 0.594.
+W - Yordle Snap Trap: Recharge reduced to 26 to 10 seconds from 30 / 24 / 19 / 15 / 12. Now scales linearly."
+14.19:item:Forbidden Idol,14.19,item,Forbidden Idol,"We're broadly nerfing most completed items with a few primary goals in mind: First, we'd like to overall slow down the pace of combat in the late game. This pace reduction should be felt in actual speed, such as move speed and ability haste but also in burst damage for those classes who aren't centered around dealing significant damage in the first place. Second, we want to reduce the rate of snowballing, as gold is the primary vector through which winning teams grow their leads, so games should feel closer for longer and for lanes to not feel quite so hopeless off of a mismatched first item spike. Third, we want classes to play out more distinctly from one another, which means that burst classes will be bursty but not so well rounded that they can also compete as DPS threats, while the DPS champions should have a much harder time bursting and champions whose strengths are indexed in durability will have to rely on that tankiness to do their jobs. We'll go into more context for the changes in each section but broadly we nerfed most legendary items between 5% and 12% of their total power, sometimes focused on bringing down one or two stats and sometimes compensating with others.","Total cost reduced to 600 gold from 800 gold.
+Combine cost reduced to 400 gold from 550 gold."
+14.19:item:Glacial Buckler,14.19,item,Glacial Buckler,"We're broadly nerfing most completed items with a few primary goals in mind: First, we'd like to overall slow down the pace of combat in the late game. This pace reduction should be felt in actual speed, such as move speed and ability haste but also in burst damage for those classes who aren't centered around dealing significant damage in the first place. Second, we want to reduce the rate of snowballing, as gold is the primary vector through which winning teams grow their leads, so games should feel closer for longer and for lanes to not feel quite so hopeless off of a mismatched first item spike. Third, we want classes to play out more distinctly from one another, which means that burst classes will be bursty but not so well rounded that they can also compete as DPS threats, while the DPS champions should have a much harder time bursting and champions whose strengths are indexed in durability will have to rely on that tankiness to do their jobs. We'll go into more context for the changes in each section but broadly we nerfed most legendary items between 5% and 12% of their total power, sometimes focused on bringing down one or two stats and sometimes compensating with others.","Total cost reduced to 900 gold from 950 gold.
+Combine cost unchanged.
+Armor increased to 25 from 20.
+Mana increased to 300 from 250."
+14.1:item:Spear of Shojin,14.1,item,Spear of Shojin,"The following items have been removed: Goredrinker, Divine Sunderer, Silvermere Dawn, and Ironspike Whip","Recipe: Kindlegem + Caulfield's Warhammer + Pickaxe + 325 gold = 3100 gold.
+Stats: 300 health, 55 attack damage, 20 ability haste.
+Bug Fix: No longer also applies to some ultimate abilities.
+Unique Passive - Focused Will: Dealing ability damage grants a stack for 6 seconds, up to 4 stacks. For each stack, your damaging abilities deal 3% increased damage, up to a maximum of 12% increased damage at 4 stacks.
+Limited to 1 Spear of Shojin.
+Stats: 500 health, 65 attack damage, 25 ability haste.
+Recipe: Kindlegem + Caulfield's Warhammer + Pickaxe + 525 gold = 3300 gold.
+Stats: 500 health, 55 attack damage, 20 ability haste.
+Unique Passive - Dragonforce: Gain 16 (+ 4% bonus AD) (melee) / 12 (+ 3% bonus AD) (ranged) basic ability haste, reducedby 50%for immobilizing spells.
+Unique Passive - Exigency: Gain up to 15% (melee) / 10% (ranged) bonus movement speed based on missing health, capped at 67% missing health.
+Limited to 1 Spear of Shojin."
+14.1:system:Rift Herald,14.1,system,Rift Herald,,"Model has been visually updated.
+Updated unit icon.
+Spawn time increased to 14:00 from 8:00.
+Mercenary structure damage reduced to 1500 to 2250 from 2000 to 2750.
+Removed: No longer has a respawn time of 6 minutes.
+New Effect - Herald's Gaze: Now takes 50% reduced damage from the last enemy that it attacked for 8 seconds, refreshing with each attack. This may only affect one enemy at a time."
+14.1:system:Voidgrubs,14.1,system,Voidgrubs,"In case you missed this one as well, we released a dev blog late last year to offer players a helping hand when it comes to learning about the Void changes coming this patch, /dev: Cat Cults, Rift Mechs, and Baron’s Revamp here ! If you’re interested in how we refined these changes OR if the idea of seeing 11 adorable cats combining their forces to seal Rift Herald appeals to you, give it a read! Disclaimer: Void Event not included","New monster
+Spawns in the baron pit as the Voidgrub camp at 5 minutes. All Voidgrubs despawn at 13:45 game time, or 13:55 if in combat.
+The camp consists of three epic Voidgrubs. A group of 3 Voidgrubs can respawn once per game and each group has a shared respawn timer of 4 minutes that begins once all 3 has been slain; for a total of six in a given game. Killing a Voidgrub is displayed in the kill feed for the ally team. Killing the camp is announced to both teams and the killer(s) of each Voidgrub are simultaneously displayed in the kill feed for the enemy team. Epic Monster takedown rewards are distributed per spawn group killed, i.e. killing at least one of the first three spawned will award one epic monster takedown, and killing at least one of the second three spawned will award another epic monster takedown.
+Every 12 seconds in combat, each Voidgrub also spawns four lesser Voidmites.
+When a Voidgrub dies, the remaining ones gain a shield for 25% maximum health (+ 25% missing health), decaying linearly over 10 seconds.
+Each Voidgrub killed grants a permanent stack of the Touch of the Void buff to all team members. This buff is not visible on enemies' status bar.
+Touch of the Void: Your basic attacks against structures are empowered to apply a burn for 4 seconds that deals 6/2 to (6*6)/2 for 6 (melee) / (6/2)/2 to ((6*6)/2)/2 for 6 (ranged) true damage every 0.5 seconds, for a total of (6/2)*8 to ((6*6)/2)*8 for 6 (melee) / ((6/2)/2)*8 to (((6*6)/2)/2)*8 for 6 (ranged) true damage. The duration refreshes on subsequent attacks.
+Additionally, gain a stack of the Hunger of the Void buff for each Touch of the Void stack after the fourth.
+Hunger of the Void: While in combat with enemy structures, summon 1 allied Voidmite for each stack of this buff (15 second cooldown)."
+14.20:rune:Phase Rush,14.20,rune,Phase Rush,"Phase Rush is technically receiving a gameplay change as a result of using up-to-date practices for its melee-ranged split. In practice, this should be unnoticeable.",Bonus movement speed for ranged champions changed to 18.75 to 37.5% from 15 to 40%.
+14.22:champion:Lillia,14.22,champion,Lillia,"Armor Growth decreased. Passive heal over time decreased.
+Lillia is still prancing around as the queen of the jungle so we're taking another crack and setting her power level to a more appropriate level. We're lowering some of her guaranteed late game durability in an effort to make her appropriately killable.","Armor growth reduced to 4.5 from 5.2.
+Passive - Dream-Laden Bough: Base heal per tick against monsters reduced to 6.5 at all levels from 39/6 to 54/6."
+14.23:system:Bounties,14.23,system,Bounties,,"Accrual rate from kills and assists increased to 1 bounty gold gold per 3.5 gold earned gold from 1 gold per 4 gold earned gold.
+Disadvantage threshold for bounty devaluation to activate has been reduced (activates closer to equilibrium).
+Rate of bounty devaluation while at a deficit has been up-to-quadrupled from the previous values.
+Gold advantages now have double their previous weight for eligibility calculations."
+14.23:system:Map,14.23,system,Map,,"Bug Fix: Destination no longer changes to (0, 0) instead of the exit portal if the user is casting certain abilities upon starting a hex-gate's channel.
+This applies to (this list may be incomplete): Broken Wings, Aegis Assault."
+14.2:rune:Rune Shard,14.2,rune,Rune Shard,,"Slot 2 option 2 changed to 2% bonus movement speed from 6 bonus armor.
+Slot 2 option 3 changed to 10 to 180 bonus health from 8 bonus magic resistance.
+Slot 3 option 1 bonus health changed to 65 at all levels from 15 to 140.
+Slot 3 option 2 changed to 10% tenacity and slow resist from 6 bonus armor.
+Slot 3 option 3 changed to 10 to 180 bonus health from 8 bonus magic resistance."
+14.4:rune:Legend: Alacrity,14.4,rune,Legend: Alacrity,We're also updating some in-game rune trackers to showcase more relevant information,In-game tracker now shows attack speed gained instead of progress to next stack.
+14.5:item:Sunfire Aegis,14.5,item,Sunfire Aegis,"Based on our reads back in Patch 14.1, Sunfire Aegis was over performing and required a tap down in power. However, now that the dust has settled, it's become apparent that these nerfs weren't necessary, so we're walking them back now.","Health increased to 500 from 450.
+Immolate base damage increased to 15 from 12."
+25.04:item:Symbiotic Soles,25.04,item,Symbiotic Soles,"Symbiotic Soles are the worst-performing boots in the game for most players, so they're deserving of a buff. We're being a bit cautious here, only giving 5 move speed to the unupgraded version, but we'll keep an eye out to see if they're deserving of more love in the future.",Movement speed increased to 40 from 35.
+25.05:item:Rod of Ages,25.05,item,Rod of Ages,,"Bonus health, mana, and ability power gained from Timeless are now considered innate stats."
+25.06:system:Atakhan,25.06,system,Atakhan,"We overshot with the tower dive adjustments to Atakhan's form selection, so this patch we're re-adjusting the calculation so Voracious can actually exist in games for solo queue players.",[Voracious can appear slightly more frequently on average.]
+25.09:champion:Annie,25.09,champion,Annie,"Q damage increased. W mana cost decreased. R magic penetration increased.
+Annie released weaker than intended, specifically during her early game. We’re looking to amplify her identity as a burst mage, ease her laning phase, and reduce her mana costs which have been a pain point as of late.","Q - Disintegrate: Base damage increased to 80 to 240 from 70 to 210.
+W - Incinerate: Mana cost reduced to 70 to 90 from 90 to 110.
+R - Summon: Tibbers: Passive magic penetration increased to 15 to 20% from 10 to 15%."
+25.09:item:Gunmetal Greaves,25.09,item,Gunmetal Greaves,"Feats of Strength have two rewards: immediate power in the form of Triumphant boot upgrades, and the option to later purchase tier 3 boots. Over time, as we’ve seen players optimize the Feats system, it’s become apparent that having the option to upgrade to T3 boots generally isn’t useful as they are mostly too weak for their cost. We’ve held off on buffing them as we didn’t want to inject significantly more overall MS into the game, but with a rework to Swiftmarch and some small changes to the other tier 3 boots, we’re moving the system to a place where the T3 boots can be made more competitive with other options.","Combine cost reduced to 500 gold from 750 gold.
+Total cost reduced to 1600 gold from 1850 gold."
+25.09:system:Ignite,25.09,system,Ignite,"In the eternal Ignite vs. Teleport debate, Ignite has come up on the losing end as of late. It’s a bit under-picked, so we’re giving it a meaningful buff to its late game damage, specifically aimed at mid and top laners.",Total damage increased to 70 / then +20*x for 4 / then +25*x from 70 to 410.
+25.10:champion:Fiddlesticks,25.10,champion,Fiddlesticks,"Q fear duration decreased and damage adjusted. W damage increased.
+Support Fiddlesticks is becoming more popular than jungle Fiddle which we're okay with… except for the fact that he's clearly more powerful as a support. We're looking to make adjustments that are roughly neutral for jungle and will bring the power down for support.","Q - Terrify: Fear duration reduced to 1.2 to 2 seconds from 1.25 to 2.25.
+Q - Terrify: Base damage reduced to 4 to 6% of target's current health from 5 to 9%.
+Q - Terrify: Empowered base damage reduced to 4*2 to 6*2% of target's current health from 5*2 to 9*2%.
+Q - Terrify: AP ratio increased to 3% per 100 AP from 2% per 100 AP.
+Q - Terrify: Empowered AP ratio increased to 3*2% per 100 AP from 2*2% per 100 AP.
+W - Bountiful Harvest: AP ratio per tick increased to 10% AP from 8.75% AP."
+25.16:champion:Brand,25.16,champion,Brand,"Passive damage to monsters increased. Q stun duration increased. R cooldown decreased.
+The last nerfs to Brand’s ultimate smothered his flames a bit too much, so we’re giving him a bit more firepower. Additionally, now that Brand has some room for additional power we’re adding a spicier elite-skewed buff to his Sear’s stun duration, and giving him some power in the jungle to bring him back to viability there.","Passive - Blaze: Ablaze monster damage increased to 260% from 240%.
+Q - Sear: Stun duration increased to 1.75 seconds from 1.5.
+R - Pyroclasm: Cooldown reduced to 100 to 80 seconds from 110 to 90."
+25.17:item:Profane Hydra,25.17,item,Profane Hydra,"Profane Hydra is a weak assassin item right now and it fails to fit the typical AD assassin power curve of attempting to spike early in the game. So to buff this item without ballooning late-game burst to the moon, we're making it a more competitive early option by giving it a significant price cut.","Total cost reduced to 2850 gold from 3200 gold.
+Combine cost reduced to 313 gold from 663 gold.
+Attack damage reduced to 55 from 60."
+25.19:rune:Unsealed Spellbook,25.19,rune,Unsealed Spellbook,"Unsealed Spellbook’s recent buff took it from being entirely forgotten to the only keystone anyone not named Neeko even uses in pro play. As a result, we’re splitting the difference with the hope that it’s still a viable keystone rune without completely dominating all choice.","Starting cooldown increased to 270 seconds from 240.
+Minimum cooldown increased to 270-(25*6) from 240-(25*6).
+Initial cooldown unchanged at 360 seconds. Cooldown reduction per unique swap unchanged at 25 seconds."
+25.23:champion:Kai'Sa,25.23,champion,Kai'Sa,"Kai'Sa has been the most picked solo queue ADC in most ranks for months on end, so we're delivering a small nerf to create more variety in the role. The primary nerf is to her base armor, where a bit less early safety should make her feel more assailable.","Base armor reduced to 25 from 27.
+R - Killer Instinct: Cooldown increased to 130 to 70 seconds from 120 to 60."
+25.23:rune:Jack of All Trades,25.23,rune,Jack of All Trades,,Undocumented / New Effect: Now considers bonus gold generation an eligible stat.
+25.S1.3:rune:Cut Down,25.S1.3,rune,Cut Down,,"Now affects true damage dealt, excluding Smite."
+25.S1.3:rune:Last Stand,25.S1.3,rune,Last Stand,,"Now affects true damage dealt, excluding Smite."
+25.S1.3:system:Combat rules,25.S1.3,system,Combat rules,,Default attack speed cap increased to 1/0.333 from 1/0.4.
+25.S1.3:system:Dragon,25.S1.3,system,Dragon,,"Damage amplifier increased to 13% from 11%.
+Damage reduction increased to 13% from 11%.
+Normal bonus movement speed reduced to 15% from 20%."
+26.01:item:Noonquiver,26.01,item,Noonquiver,,Now builds into Hexoptics C44.
+26.01:item:Zeke's Convergence,26.01,item,Zeke's Convergence,"All our other ultimate trigger items give ultimate haste, and Zeke's has room for a bit more power and could be a bit more unique in the tank support item space, so we're giving it a bit of ultimate haste to spice it up.",New Unique Passive - Cryocombustion: Gain 15 ultimate ability haste.
+26.01:rune:Demolish,26.01,rune,Demolish,"Given that Overgrowth occupies a lot of the same space as Demolish (in visuals, complexity, and gameplay), we felt Demolish needed to be simplified. We still want Demolish to be a satisfying and useful rune to users that already like it, and we'll be keeping an eye on how this feels with the Overgrowth mechanic and make any changes as needed.","New Effect: Every third basic attack against a turret deals 85 (melee) / 50 (ranged) (+ 28% (melee) / 20% (ranged) maximum health) bonus physical damage (30 second cooldown).
+Generate stacks every 0.5 seconds on enemy turrets within 600 units, up to 6 after 3 seconds. Your next basic attack against a turret with 6 stacks is empowered to consume all stacks to deal 100 (+ 35% of your maximum health) bonus physical damage (45 second cooldown).
+Demolish cannot be triggered against the same turret again by anyone for 3.5 seconds. Stacks expire one by one every 1 second if you move out of range.
+Demolish activates after 45 seconds of game time."
+26.01:rune:Unsealed Spellbook,26.01,rune,Unsealed Spellbook,,Swapped Smite damage increased to 600 / 600 / 1000 from 600 / 600 / 900.
+26.01:system:Rift Herald,26.01,system,Rift Herald,"Rift Herald is a valuable objective due to its ability to knock down turrets, so we're actually increasing its unique reward a small amount while removing an odd optimization around delaying its summon in order to squeak out a level up and thus get more damage from the Rift Herald Mercenary's charges. We're making the ""Eye"" mechanic more solo-able by moving it to a simple cooldown that junglers can more easily claim by themselves. We're also changing its rewards to match our goals, especially by reducing the amount of local gold it gives nearby champions and instead rewarding the killer an appropriate amount. As with other epic monsters, its effective health has also increased.","Starting level increased to 9 from 6.
+Health changed to 11718 to 18900 from 7125 to 14250.
+Armor changed to 87.92 to 170 from 60 at all levels.
+Magic resistance changed to 58.96 to 100 from 50 at all levels.
+Experience reduced to 240 at all levels from 309 / 318 / 330.
+Experience radius increased to 2000 from 600.
+Vulnerable Eye cooldown reduced to 6 seconds from 8.
+Removed: Vulnerable Eye cooldown no longer reduces by 2.5 seconds every time she is struck by a champion's basic attack.
+New Effect: Now deals 50% more damage to non-champions.
+Health changed to 4319.8 to 7090 from 3180 to 6360.
+Armor changed to 87.92 to 170 from 60 at all levels.
+Magic resistance changed to 58.96 to 100 from 50 at all levels.
+Leap damage increased to 3000 at all levels. from 2000 to 3000."
+26.01:system:Vision,26.01,system,Vision,,"New
+New special locations on Summoner's Rift, that when warded, grant bonus vision range to the ward. Faelights spawn in predetermined locations at game start, increased when an elemental rift ocurs.
+Grants 25% increased vision radius to the ward.
+Reveals a bonus vision region for 45 seconds.
+The bonus vision region shape is specific to that faelight location.
+The bonus region particles are only visible to your team.
+The bonus vision region is not affected by the type of ward being used (e.g. Control Wards don't enhance it.)
+This duration is represented by a countdown circle visual on the ward.
+The bonus vision region can see into brush if the brush is in the region shape.
+Enemies will know they're in the bonus region while their team has a detector/sweeper effect within the region.
+Enemies will know they're in the bonus region if their team has ping-tracked the ward directly (including via Sixth Sense).
+All faelight superward buffs are suppressed while the ward has nearsight, and removed when the ward dies.
+If your team already has a ward on the faelight, that ward will be destroyed to make room for the new superward.
+For the sake of Vision Score, the ward grants 25% increased score.
+For the sake of Vision Score, the bonus vision region is treated as an extra ward obeying the Position modifier rule, but other modifier rules are not affected (e.g. staleness).
+One near each base gate (4 total), providing vision into the nearby jungle.
+One in each island brush near top and bot (2 total), providing vision into river.
+One in each river wall brush near mid AKA banana brush (2 total), providing vision of nearby river (hugging the mid lane brush but not overlapping it).
+After Elemental Rift Transformation: One near side lanes in each quadrant (4 total), providing vision in the jungle path along the lane."
+26.03:champion:Bel'Veth,26.03,champion,Bel'Veth,Bel'Veth is one of several AD junglers who suffered in the new season and we're here to buff her back up. We're aiming to bring up her late game in ways that synergize with squishy high attack speed builds by giving her a better payout for that attack speed and enough health to not need to buy as much of it.,"Health growth increased to 105 from 99.
+Death in Lavender: Bug Fix: Fixed an issue where it would prevent the support item from properly executing minions.
+R - Endless Banquet: Base on-hit damage increased to 6 to 14 from 6 to 10."
+26.03:champion:Draven,26.03,champion,Draven,"Draven's Q was initially bugged to deal less damage at the start of the season, which was micropatched within the first week. Players are also trying Essence Reaver over Bloodthirster, which currently performs worse. After accounting for all of these factors, Draven's still not doing as well as he was last year, so we're coming to prop him back up by reverting one of our preemptive pre-season nerfs.",Attack damage growth increased to 3.4 from 3.
+26.03:system:Vision,26.03,system,Vision,,Reveal region shape changed to (cuts off before scuttle pad and epic pit entrance) from (expanded past scuttle pad and epic pit entrance).
+26.04:champion:Kassadin,26.04,champion,Kassadin,"Kassadin's been having a great time now that he's able to stack multiple Tear of the Goddess items. Seriously, get on the Seraph's + Muramana train! But because this newfound power has taken him over the edge, we need to appropriately balance him. We want to preserve his high late game damage and mobile scaling fantasy, but we want to balance those strengths with appropriate weaknesses once he gets there.","Health growth reduced to 113 from 119.
+E - Force Pulse: Slow reduced to 50 to 70% from 50 to 90%."
+26.07:champion:Rell,26.07,champion,Rell,"In addition to our nerfs to Karma and Nami,, we're buffing one of our tank supports. Our hope here is to provide our favorite iron steed rider with a buff that drives excitement during her high points, so we're making the horse go fast and further rewarding her clutch engages.","E - Full Tilt: Bonus movement speed increased to 15% from 10%.
+E - Full Tilt: Increased bonus movement speed increased to 30% from 25%.
+R - Magnet Storm: Base damage increased to 150 to 350 from 120 to 280."
+26.09:item:Voltaic Cyclosword,26.09,item,Voltaic Cyclosword,"Voltaic Cyclosword brings some cool Energized options to AD casters, but we think we can make it even broader by allowing it to open up the strict auto-attack gate that stops many melees from being good with it. We also don't love the slow effect, as it tended to trivialize a lot of the combat once players did manage to get into melee. With Opportunity removed, Voltaic should also be able to stand as the premier ""upfront burst"" item for AD casters.","Total cost reduced to 2900 gold from 3000 gold.
+Combine cost reduced to 863 gold from 963 gold.
+Lethality reduced to 10 from 18.
+New Effect: Damaging enemy champions with abilities can trigger Energized effects.
+Old Effect: Energized stack generation is increased by 75% for distance travelled from dashes, lunges and blinks, as well as while moving in stealth.
+New Effect: When fully Energized, your next basic attack grants you 15 (melee) / 12 (ranged) lethality for 4 seconds and deals bonus physical damage equal to 9% (melee) / 7% (ranged) of the target's current health, capped at 200 against non-champions.
+Old Effect: When fully Energized, your next basic attack deals 100 bonus physical damage on-hit and slows the target by 99% (melee) / 20% (ranged) for 0.75 seconds."
+26.09:rune:Arcane Comet,26.09,rune,Arcane Comet,"Previously, Comet was given a cooldown refund mechanic for damage over time and sustained damage casters. Now that Deathfire Touch exists, Comet no longer needs it, and can now better serve its original intended audience of control mages and artillery mages with a damage-per-distance mechanic that should be exciting for those subclasses to play with.","Base damage reduced to 15 to 100 from 30 to 130.
+New Effect: Damage is now increased by 0 to 100%.
+Removed: Dealing forms of ability damage no longer reduces the remaining cooldown:
+Spell damage: 20%
+Area damage: 10% per enemy hit
+Pet damage: 10%
+Persistent damage: 5%"
+26.11:rune:Deathfire Touch,26.11,rune,Deathfire Touch,We are also making an adjustment to Deathfire Touch so that it now only deals magic damage to resolve an extreme synergy with Black Cleaver.,Damage type changed to magic damage from adaptive damage.
+26.17:item:Stormrazor,26.17,item,Stormrazor,"Stormrazor almost had its time in the sun earlier this year, but has ended up remaining second fiddle.",Attack speed increased to 25% from 20%.
+26.19:system:Role quests,26.19,system,Role quests,,"Teleport cooldown reduced to 390 seconds from 420.
+New Effect: Unleashed Teleport cooldown is now reduced by 30 seconds."
+9.10:champion:Vayne,9.10,champion,Vayne,"R Tumble cooldown reduction now scales.
+Similar to Riven, we want to work on targeting the frustration around playing against Vayne beyond just her raw stats. Right now, Vayne ramps up a little too early and is especially frustrating because of how often she goes invisible. These changes should lessen her power spike at level 6.",R - Final Hour: Tumble cooldown reduction reduced to 30 to 50% from 50% at all ranks.
+9.12:champion:Amumu,9.12,champion,Amumu,This update is aimed at reinforcing Amumu's Shuriman thematic and improving his gameplay clarity. We also tried to make it as close as possible to the style in his music video !,"New visual effects.
+New basic attack hit effects.
+All skins cleaned up to match the new effects on the base skin.
+Cursed Touch: Cleaned up existing effects.
+Bandage Toss: Added a subtle effect to show the width of his missile and brightened the tip of it.
+Despair: Now displays a reflection and has a better representation of the hitbox.
+Despair: New, more condensed impact effect.
+Tantrum: New AoE, now with sand, and a better representation of the hitbox.
+Curse of the Sad Mummy: More sand and actual Shuriman runes.
+New, robot-y effects across all his abilities."
+9.1:champion:Sivir,9.1,champion,Sivir,"Champion hits don't reduce Q's damage.
+Buffing the dream Q that hits all five enemy champions in a teamfight.","Q - Boomerang Blade: Hitting an enemy champion no longer decreases Boomerang Blade's damage against subsequent targets.
+Ricochet: Undocumented: AD ratio increased to 55 to 75% AD from 50 to 70% AD
+On the Hunt: New Effect: Ability icon HUD now shows the remaining duration of the ability."
+9.1:rune:Shield Bash,9.1,rune,Shield Bash,,Base damage increased to 5 to 30 from 4 to 21.
+9.1:system:Turrets,9.1,system,Turrets,,"New Effect: Champions within 2500 range who assisted in a turret takedown now also count toward turret gold distribution, including first turret bonus.
+Turret local gold proximity radius increased to 1200 from 1000."
+9.21:champion:Ivern,9.21,champion,Ivern,,"Rootcaller: New Effect: Ivern now dashes to 125 range away from the target.
+Rootcaller: Bug Fix: Fixed a bug where he would land inside some jungle camps when dashing with his Q.
+Rootcaller: Bug Fix: Fixed a bug where allies would teleport to unexpected locations when he would dash to a rooted target."
+9.23:item:Banshee's Veil,9.23,item,Banshee's Veil,,"Unique passive is now named Spell Shield.
+New spell shield VFX."
+9.23:item:Ohmwrecker,9.23,item,Ohmwrecker,"Ohmwrecker's been underused and underpowered for a long time. Turret disabling is an interesting mechanic we think could have a place in League, but not one that potentially shows up in every team's toolkit, which is the risk a good version of Ohmwrecker presents.","Removed
+Removed from the game."
+9.23:rune:Fleet Footwork,9.23,rune,Fleet Footwork,,"Energized stacks per attack reduced to 6 from 12.
+Energized stacks per movement increased to (1 for every 25 units) from (1 for every 30 units).
+New Effect: Energized effects now always work on turrets."
+9.23:rune:Presence of Mind,9.23,rune,Presence of Mind,"Increases mana or energy pool on takedown instead of refunding ult cooldown. Now restores energy in addition to mana.
+This rune's ult cooldown refund overlaps too much with Cloud Drake's new buff. Admittedly, so does Ultimate Hunter, but Hunter is usable by more champions and has a clearer goal, so it's the one that gets to stay. We're changing Presence of Mind to finally open it up to energy users and grant a resource pool increase (big brain getting bigger) rather than a partial ult reset.","Removed: No longer refunds 10% of your ultimate's maximum cooldown on takedown.
+New Effect: Now also restores 20% of your maximum energy on takedown.
+New Effect: Now grants 100 maximum mana or 10 maximum energy on takedown, stacking up to 5 times."
+9.23:system:Map,9.23,system,Map,,"New alcoves have been carved into the outer corners of top and bot lanes.
+Bot lane now has three brush patches, instead of two long patches, mirroring top lane.
+New brush has been added by the river entrances in both Blue buff quadrants."
+9.23:system:Rift Herald,9.23,system,Rift Herald,,"Spawn time reduced to 8:00 from 10:00.
+New Effect: Can now respawn after 6 minutes.
+Health changed to 8250 to 16500 from 10000 to 16000 / 16000 / 16000 / 16000 / 16000 / 16000 / 16000.
+Base attack speed reduced to 0.4 from 0.5.
+Eye of the Herald pick-up window reduced to 20 seconds from 40.
+Undocumented: Eye of the Herald Herald's Call changed to a 1-second cast time from a 4-second channel.
+Summoned Rift Herald level is now determined on picking up the Eye of the Herald, rather than on using the Eye of the Herald.
+Summoned Rift Herald health changed to 3180 to 6360 from 4000 to 6400.
+Headbutt turret damage changed to 1500 to 2250 from (40% of Herald's current health or 1500, whichever is greater).
+Headbutt self damage increased to 66% of Herald's curent health from 25%."
+9.23:system:Turrets,9.23,system,Turrets,,"Icon updated to Ohmwrecker's icon, instead of Skull Crusher's icon.
+Turret Plating resistances per stack increased to 0 / 0 / 25 to 130 from 0 / 0 to 100."
+9.24b:champion:Shaco,9.24b,champion,Shaco,"E damage ratio decreased; cost flattened.
+Shaco is overperforming across the board in all his roles (AD jungler, AP jungler, AP support). Looking to bring him down a bit.","E - Two-Shiv Poison: AD ratio reduced to 70% bonus AD from 80% bonus AD.
+E - Two-Shiv Poison: AP ratio reduced to 55% AP from 60% AP.
+E - Two-Shiv Poison: Mana cost changed to 65 at all ranks from 50 to 70."
+9.2:item:Sunfire Cape,9.2,item,Sunfire Cape,"Cost decreased.
+Despite its historical place in many tank and fighter builds, Sunfire Cape isn't showing up in many inventories these days. Making it cheaper provides earlier access to the full-powered Immolate effect, giving core users a leg up in lane and reopening the door to Sunfire builds for champs who've rotated onto other first items.","Total cost reduced to 2750 gold from 2900 gold.
+Combine cost reduced to 650 gold from 800 gold."
+9.2:system:Smite,9.2,system,Smite,,"Total damage reduced to 48 to 125 from 60 to 162.
+Damage over time duration reduced to 2.5 seconds from 3.
+Removed: No longer grants vision for the mark duration."
+9.6:item:Archangel's Staff,9.6,item,Archangel's Staff,,New Effect: Can now only purchase one Awe item.
+9.7:item:The Dark Seal,9.7,item,The Dark Seal,"Ability power, sell-back value decreased.
+Dark Seal is meant to be a greedy purchase to eventually upgrade into an even greedier Soulstealer, but its stat efficiency is so high and its sell-back value so good it’s become the correct choice to buy (sometimes in multiples) in too many situations.","Ability power reduced to 10 from 15.
+Sellback value reduced to 140 gold from 245 gold."
+9.9:rune:Aftershock,9.9,rune,Aftershock,"Resistances no longer scale with level; now scale with other bonus resistances up to a level-based cap. Damage no longer scales with AD or AP.
+Aftershock is taken by a fairly wide variety of champions, especially those with access to hard CC who opt into this rune for a windowed boost of durability. Right now, it looks to be strongest on mages specifically: that extreme durability in combination with high amounts of burst damage mages can provide via Aftershock's AP ratio leaves little room for opponents to play against Aftershock mages. To combat these cases, we're specifically targeting Aftershock's scaling to better hit the same power level for all its users.","Bonus armor reduced to 70 at all levels from 70 to 120.
+New Effect: Now scales with 50% bonus armor.
+Bonus armor caps while having (80-70)/0.5 to (150-70)/0.5 bonus armor.
+Bonus magic resistance reduced to 70 at all levels from 70 to 120.
+New Effect: Now scales with 50% bonus magic resistance.
+Bonus magic resistance caps while having (80-70)/0.5 to (150-70)/0.5 bonus magic resistance.
+Removed: Shockwave damage no longer scales with 15% bonus AD and 10% AP.
+Shockwave damage health ratio increased to 4% of maximum health from 3%."
+9.9:rune:Ghost Poro,9.9,rune,Ghost Poro,,New Effect: Now also grants bonus adaptive stats when your Ghost Poro spots an enemy champion.

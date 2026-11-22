@@ -64,8 +64,10 @@ Validate rows against it before writing, and change a contract only in a PR that
 | `data/processed/labels.parquet` | `ChampionPatch` | 2 |
 | `data/predictions/<model>.csv` | `Prediction` | 3, 4, 5 |
 
-`data/` is gitignored.
-Raw data is reproducible from the fetch script; share processed files through the group's cluster home directory.
+`data/processed/` is committed, so `git pull` brings the latest files.
+`data/processed/MANIFEST.md` lists each file's current version, build date and row count; bump it in the same commit as the file.
+File names stay fixed so nobody's code breaks; older versions are in git history.
+`data/raw/` (60 MB) stays local and is rebuilt by the fetch script.
 
 ## Block labels
 
@@ -83,4 +85,4 @@ All models are scored by the same code in `src/patch2meta/eval/`.
 
 - Branch per task, PR into `main`, one reviewer.
 - `uv run ruff check . && uv run ruff format .` before pushing.
-- No credentials, API keys or downloaded data in git. Put keys in `.env`.
+- No credentials or API keys in git. Put keys in `.env`.
