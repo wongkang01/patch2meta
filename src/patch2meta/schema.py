@@ -7,7 +7,7 @@ in one PR, and tell the people who read that file.
 Patch IDs are the LoL Wiki version titles without the leading "V": "9.22", "25.S1.1", "26.21".
 """
 
-from datetime import date
+from datetime import date, datetime
 from enum import StrEnum
 from typing import Literal
 
@@ -81,17 +81,97 @@ class BlockLabel(BaseModel):
 
 
 class ChampionPatch(BaseModel):
-    """data/processed/labels.parquet, written by person 2. One champion on one pro patch."""
+    """One champion on one pro patch: the target, written by person 2.
+
+    data/processed/labels.parquet holds train and dev rows. The 2026 test rows are held back in
+    data/private/labels_test.parquet until the single test run after the model freeze.
+
+    Rows exist for every champion released before the next Riot patch after P (P's notes announce
+    new champions), drafted or not, so the row set reveals nothing about games on P. A champion drafted on neither P nor P' has presence 0
+    and delta_presence 0.
+    """
 
     patch: str
     prev_patch: str  # P': the previous patch with >= 100 pro games
     champion: str
     n_games: int  # pro games on `patch`
     presence: float  # (picks + bans) / games on `patch`
-    prev_presence: float
+    prev_presence: float  # (picks + bans) / all games on P'; part of the target, not a model input
     delta_presence: float  # presence - prev_presence: the main target
     fearless_share: float  # share of games on `patch` played in Fearless draft
-    changed: bool  # the notes for `patch` have a gameplay block (ChangeBlock.gameplay) for this champion
+    # changed: the notes of any Riot patch after P' up to P have a gameplay block (ChangeBlock.gameplay)
+    # for this champion; blocks of only bug fixes or cosmetic lines do not count.
+    changed: bool
+    # Newly drafted champion: `patch` is the first pro patch on which it is picked or banned, or the
+    # next pro patch. Its delta_presence then reflects tournament legality, not the notes, so the eval
+    # code reports these rows separately and leaves them out of headline scores. Not a model input.
+    new_champion: bool = False
+
+
+class PrePatchStats(BaseModel):
+    """data/processed/prepatch_stats.parquet, written by person 2. Model inputs for every split.
+
+    One row per (patch, champion) key of the label files, plus rows for kept patches outside the study
+    splits (26.22, for the demo). Rows for 2026 and later patches hold the outcomes of earlier 2026
+    patches, so use them only for the frozen models' predictions. Every value uses only games dated before
+    the forecast time cut(P) = 00:00 UTC on the day before P's release date, when the notes are out.
+    P' games played after that are left out, so prev_presence here can differ from
+    ChampionPatch.prev_presence. Never rebuild the target from this file.
+    """
+
+    patch: str  # P, the patch being forecast
+    prev_patch: str  # P'
+    champion: str
+    prev_n_games: int  # pro games on P' dated before cut(P)
+    prev_presence: float  # (picks + bans) / those games; 0 if not drafted in them
+    prev_pick_rate: float  # picks / those games
+    prev_ban_rate: float  # bans / those games
+    prev_win_rate: float | None  # wins / picks in those games; None if never picked
+    prev_main_role: str | None  # most-played role in those games (top, jungle, mid, bot, support)
+    prev_delta_1: float | None  # presence on P' minus presence on P'' (games before cut(P)); None if no P''
+    prev_delta_2: float | None  # presence on P'' minus presence on P'''; None if no P'''
+    prev_fearless_share: float  # share of those P' games played in Fearless draft
+    # Pro patches from the champion's first pick or ban up to P' (games before cut(P)): 0 if released
+    # but not drafted yet, 1 on the pro patch after its first one, and so on. None for champions
+    # released before 2019, whose first pro patch is before the data starts.
+    patches_since_debut: int | None
+
+
+class PatchMapRow(BaseModel):
+    """data/processed/patch_map.csv, written by person 2. One Riot patch from 9.1 onward."""
+
+    patch: str  # "26.20"
+    wiki_title: str  # "V26.20"
+    client_version: str  # "16.20" (CommunityDragon and the game client)
+    riot_url: str | None  # from data/raw/patches.jsonl once person 1 has run the fetcher
+    release_date: date | None  # LoL Wiki infobox; None for pages without one
+    cut: datetime | None  # forecast time: 00:00 UTC on the day before release_date
+    n_pro_games: int
+    kept: bool  # at least 100 pro games
+    prev_patch: str | None  # P' for kept patches
+    riot_patches_since_prev: str | None  # Riot patches in (P', P], joined with ";"
+    split: Literal["train", "dev", "test", "none"]
+
+
+class RelationEdge(BaseModel):
+    """data/processed/relation_graph.parquet, written by person 2. One directed edge for one patch.
+
+    Built only from games on the 6 kept patches before `patch` that are dated before cut(patch).
+    """
+
+    patch: str  # the forecast patch P
+    champion: str
+    neighbour: str
+    relation: Literal["partner", "counter", "substitute"]
+    # partner: games where both are picked on the same team; counter: games where they are picked in
+    # the same role on opposite teams (lane opponents); substitute: role overlap, sum over roles of
+    # share_c(role) * share_n(role).
+    weight: float
+    share: float  # partner/counter: weight / picks of `champion` in the window; substitute: the overlap
+    lift: float | None  # weight * team_games / (picks of champion * picks of neighbour); None for substitute
+    window_first: str
+    window_last: str
+    n_games_window: int
 
 
 class Prediction(BaseModel):

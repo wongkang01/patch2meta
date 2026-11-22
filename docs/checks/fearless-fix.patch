@@ -1,0 +1,188 @@
+--- a/src/patch2meta/pro/fearless.py
++++ b/src/patch2meta/pro/fearless.py
+@@ -1,38 +1,90 @@
+ """Fearless draft flags, inferred from the drafts.
+ 
+ In Fearless draft a champion picked in one game of a series cannot be picked again in that series.
+-Leaguepedia has no format field, so the format is inferred per tournament:
+-  1. A multi-game series is Fearless-looking if no champion is picked twice across its games.
+-  2. A tournament is Fearless if at least 90% of its multi-game series are Fearless-looking.
+-  3. Tournaments with only single-game series count as standard.
+-Every game takes its tournament's flag.
++Leaguepedia has no format field, so the format is inferred per tournament from three series tests:
++  hard   no champion is picked twice across the series, by either team;
++  reset  the hard test on every game except the series' last one (Fearless with a reset decider,
++         where game 3 of a Bo3 or game 5 of a Bo5 resets the draft or is blind pick);
++  soft   no team picks the same champion twice in the series (Leaguepedia also calls this Fearless).
++A tournament is Fearless if at least 90% of its tested series pass any one test. The reset test needs
++at least 3 series with 3 or more games, and the soft test at least 5 multi-game series.
++Tournaments with only single-game series count as standard. Every game takes its tournament's flag.
+ """
+ 
+ import pandas as pd
+ 
+ THRESHOLD = 0.9
++MIN_RESET_SERIES = 3
++MIN_SOFT_SERIES = 5
+ 
+ 
++def _multi_game(games: pd.DataFrame) -> pd.DataFrame:
++    n_games = games.groupby("match_id")["game_id"].transform("size")
++    return games[n_games >= 2]
++
++
+ def series_fearless(games: pd.DataFrame) -> pd.Series:
+-    """1.0 or 0.0 per multi-game series (match_id); series with one game are left out."""
+-    picks = games[["match_id", "picks_blue", "picks_red"]].copy()
+-    picks["picks"] = [list(b) + list(r) for b, r in zip(picks["picks_blue"], picks["picks_red"])]
+-    long = picks[["match_id", "picks"]].explode("picks")
+-    n_games = games.groupby("match_id").size()
+-    multi = n_games[n_games >= 2].index
+-    long = long[long["match_id"].isin(multi)]
+-    max_repeat = long.groupby(["match_id", "picks"]).size().groupby(level="match_id").max()
++    """Hard test: 1.0 or 0.0 per multi-game series (match_id); series with one game are left out."""
++    m = _multi_game(games)
++    picks = pd.Series([list(b) + list(r) for b, r in zip(m["picks_blue"], m["picks_red"])], index=m.index)
++    long = pd.DataFrame({"match_id": m["match_id"], "pick": picks}).explode("pick")
++    max_repeat = long.groupby(["match_id", "pick"]).size().groupby(level="match_id").max()
+     return (max_repeat <= 1).astype(float).rename("series_fearless")
+ 
+ 
++def series_reset(games: pd.DataFrame) -> pd.Series:
++    """Reset test: the hard test after removing each series' last game (series of 3+ games only)."""
++    order = games.sort_values(["match_id", "datetime_utc", "game_id"])
++    last = order.groupby("match_id")["game_id"].transform("last")
++    return series_fearless(order[order["game_id"] != last]).rename("series_reset")
++
++
++def series_soft(games: pd.DataFrame) -> pd.Series:
++    """Soft test: 1.0 when no team picks the same champion twice in the series."""
++    m = _multi_game(games)
++    sides = [
++        m[["match_id", f"team_{s}", f"picks_{s}"]].set_axis(["match_id", "team", "pick"], axis=1)
++        for s in ("blue", "red")
++    ]
++    long = pd.concat(sides).explode("pick")
++    max_repeat = long.groupby(["match_id", "team", "pick"]).size().groupby(level="match_id").max()
++    return (max_repeat <= 1).astype(float).rename("series_soft")
++
++
++def tournament_formats(games: pd.DataFrame) -> pd.DataFrame:
++    """Per tournament: share and number of series passing each test, and the resulting format.
++
++    `format` is "hard", "reset", "soft" (the first test that passes, in that order) or "standard".
++    """
++    tour_of = games.drop_duplicates("match_id").set_index("match_id")["tournament"]
++    cols = {}
++    for name, s in (
++        ("hard", series_fearless(games)),
++        ("reset", series_reset(games)),
++        ("soft", series_soft(games)),
++    ):
++        by_tour = s.groupby(tour_of.reindex(s.index))
++        cols[name] = by_tour.mean()
++        cols[f"n_{name}"] = by_tour.size()
++    t = pd.DataFrame(cols).reindex(tour_of.unique())
++    t[["n_hard", "n_reset", "n_soft"]] = t[["n_hard", "n_reset", "n_soft"]].fillna(0).astype(int)
++    passes = {
++        "hard": t["hard"].ge(THRESHOLD),
++        "reset": t["reset"].ge(THRESHOLD) & t["n_reset"].ge(MIN_RESET_SERIES),
++        "soft": t["soft"].ge(THRESHOLD) & t["n_soft"].ge(MIN_SOFT_SERIES),
++    }
++    t["format"] = "standard"
++    for name in ("soft", "reset", "hard"):  # reverse order so the first passing test wins
++        t.loc[passes[name], "format"] = name
++    return t
++
++
+ def tournament_fearless(games: pd.DataFrame) -> pd.Series:
+-    """Share of Fearless-looking series per tournament (NaN when it has no multi-game series)."""
+-    series = series_fearless(games)
+-    tour_of_series = games.drop_duplicates("match_id").set_index("match_id")["tournament"]
+-    return series.groupby(tour_of_series.reindex(series.index)).mean().rename("fearless_share")
++    """Share of hard-test Fearless series per tournament (NaN when it has no multi-game series)."""
++    return tournament_formats(games)["hard"].rename("fearless_share")
+ 
+ 
+ def game_fearless(games: pd.DataFrame) -> pd.Series:
+-    """True for games in a Fearless tournament, aligned with `games.index`."""
+-    share = tournament_fearless(games)
+-    return games["tournament"].map(share).fillna(0.0).ge(THRESHOLD).rename("fearless")
++    """True for games in a Fearless tournament (any of the three tests), aligned with `games.index`."""
++    fmt = tournament_formats(games)["format"]
++    return games["tournament"].map(fmt).fillna("standard").ne("standard").rename("fearless")
+--- a/tests/test_fearless.py
++++ b/tests/test_fearless.py
+@@ -1,18 +1,18 @@
+ import pandas as pd
+ from conftest import game
+ 
+-from patch2meta.pro.fearless import game_fearless, series_fearless
++from patch2meta.pro.fearless import game_fearless, series_fearless, tournament_formats
+ 
++FRESH = {"picks_blue": ["K", "L", "N", "M1", "M2"], "picks_red": ["M3", "M4", "M5", "M6", "M7"]}
+ 
++
+ def test_series_and_tournament_flags():
+     rows = [
+         # Fearless tournament: two series, no repeated pick inside either
+         game("f1", "s1", "Fearless Cup", "2025-01-01", "25.S1.1", "ABCDE", "FGHIJ"),
+-        game("f2", "s1", "Fearless Cup", "2025-01-01", "25.S1.1", "KLNAB", "CDEFG")
+-        | {"picks_blue": ["K", "L", "N", "M1", "M2"], "picks_red": ["M3", "M4", "M5", "M6", "M7"]},
++        game("f2", "s1", "Fearless Cup", "2025-01-01", "25.S1.1", "KLNAB", "CDEFG") | FRESH,
+         game("f3", "s2", "Fearless Cup", "2025-01-02", "25.S1.1", "ABCDE", "FGHIJ"),
+-        game("f4", "s2", "Fearless Cup", "2025-01-02", "25.S1.1", "KLNAB", "CDEFG")
+-        | {"picks_blue": ["K", "L", "N", "M1", "M2"], "picks_red": ["M3", "M4", "M5", "M6", "M7"]},
++        game("f4", "s2", "Fearless Cup", "2025-01-02", "25.S1.1", "KLNAB", "CDEFG") | FRESH,
+         # Standard tournament: A is picked in both games of the series
+         game("n1", "s3", "Standard Cup", "2025-01-01", "25.S1.1", "ABCDE", "FGHIJ"),
+         game("n2", "s3", "Standard Cup", "2025-01-01", "25.S1.1", "AKLNM", "FGHIJ"),
+@@ -24,3 +24,48 @@
+     assert series.to_dict() == {"s1": 1.0, "s2": 1.0, "s3": 0.0}
+     flags = dict(zip(g["game_id"], game_fearless(g)))
+     assert flags == {"f1": True, "f2": True, "f3": True, "f4": True, "n1": False, "n2": False, "b1": False}
++
++
++def _reset_series(match: str, tour: str, day: str) -> list[dict]:
++    """A Bo3 that is Fearless in games 1 and 2; game 3 resets and repeats game 1's picks."""
++    return [
++        game(f"{match}-1", match, tour, f"{day} 10:00", "25.S1.1", "ABCDE", "FGHIJ"),
++        game(f"{match}-2", match, tour, f"{day} 11:00", "25.S1.1", "KLNAB", "CDEFG") | FRESH,
++        game(f"{match}-3", match, tour, f"{day} 12:00", "25.S1.1", "ABCDE", "FGHIJ"),
++    ]
++
++
++def _soft_series(match: str, tour: str, day: str) -> list[dict]:
++    """Game 2 swaps the picks: each champion is picked twice, but never twice by the same team."""
++    return [
++        game(f"{match}-1", match, tour, f"{day} 10:00", "25.S1.1", "ABCDE", "FGHIJ"),
++        game(f"{match}-2", match, tour, f"{day} 11:00", "25.S1.1", "FGHIJ", "ABCDE"),
++    ]
++
++
++def test_reset_decider_and_soft_fearless():
++    rows = [r for i in range(3) for r in _reset_series(f"r{i}", "Reset Cup", f"2025-02-0{i + 1}")]
++    rows += [r for i in range(5) for r in _soft_series(f"s{i}", "Soft Cup", f"2025-03-0{i + 1}")]
++    rows += [r for i in range(2) for r in _soft_series(f"t{i}", "Small Soft Cup", f"2025-04-0{i + 1}")]
++    rows += [  # standard: T1 picks A in both games, so neither the hard nor the soft test passes
++        game("n1", "n", "Standard Cup", "2025-05-01 10:00", "25.S1.1", "ABCDE", "FGHIJ"),
++        game("n2", "n", "Standard Cup", "2025-05-01 11:00", "25.S1.1", "AKLNM", "FGHIJ"),
++    ]
++    g = pd.DataFrame(rows)
++    t = tournament_formats(g)
++    assert t.loc["Reset Cup", ["hard", "reset", "n_reset"]].tolist() == [0.0, 1.0, 3]
++    assert t.loc["Soft Cup", ["hard", "soft", "n_soft"]].tolist() == [0.0, 1.0, 5]
++    assert t["format"].to_dict() == {
++        "Reset Cup": "reset",
++        "Soft Cup": "soft",
++        "Small Soft Cup": "standard",  # fewer than 5 series, too few to trust the soft test
++        "Standard Cup": "standard",
++    }
++    flags = game_fearless(g).groupby(g["tournament"])
++    assert flags.nunique().eq(1).all()  # every game takes its tournament's flag
++    assert flags.first().to_dict() == {
++        "Reset Cup": True,
++        "Small Soft Cup": False,
++        "Soft Cup": True,
++        "Standard Cup": False,
++    }
