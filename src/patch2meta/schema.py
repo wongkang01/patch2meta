@@ -50,7 +50,9 @@ class ChangeLine(BaseModel):
     attribute: str  # "base damage"
     old: str | None  # raw text, e.g. "50/90/130/170/210"
     new: str | None
-    rel_change: float | None  # mean relative change across ranks, None if not numeric
+    rel_change: float | None  # mean of (new - old) / |old| across ranks, so the sign is the direction
+    # the number moved; None if not numeric, or if old and new are not the same kind of value (% vs flat,
+    # bonus vs total AD, level vs per-minute scaling, prose)
     raw: str  # the whole line as plain text (wiki templates rendered, numbers kept)
     tag: str | None  # the wiki's label: "Bug Fix", "New Effect", "Removed", "Undocumented", ...
     gameplay: bool  # False for bug fixes and cosmetic lines (VFX, SFX, skins, icons, tooltips)

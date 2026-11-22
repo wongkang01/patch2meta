@@ -7,6 +7,7 @@ client. Each ";" heading is one block; each bullet under it is one ChangeLine.
 """
 
 import ast
+import itertools
 import operator
 import re
 from dataclasses import dataclass
@@ -95,7 +96,7 @@ def tokenize(text: str) -> list[Token]:
 # Templates that render to a name: the display text is the 2nd arg if given, else the 1st.
 _NAME_TEMPLATES = {
     "ci", "ii", "ri", "si", "ui", "bi", "iis", "cis", "uis", "sis", "ccs", "ris", "cci", "ccib",
-    "fi", "nie", "gs", "tip", "rutngt", "univ",
+    "fi", "nie", "tip", "rutngt", "univ",
 }  # fmt: skip
 # Ability templates: {{ai|ability|champion|display}}.
 _ABILITY_TEMPLATES = {"ai", "cai", "ais", "cais"}
@@ -111,6 +112,34 @@ def _drop_count(spec: str) -> str:
     """ "150 to 550 3" or "0 to 80 for 11" -> "150 to 550": the rank count is not display text."""
     m = _RANGE.match(spec.strip())
     return f"{m.group(1)} to {m.group(2)}" if m else spec
+
+
+def _is_formula(t: Template) -> bool:
+    """A pp template whose values are one formula in x ("3450+380*(x-1+6)", "3.5*(x-1) for 7")."""
+    return bool(t.args) and "x" in t.args[0] and ";" not in t.args[0] and "then" not in t.args[0]
+
+
+def _formula_values(t: Template) -> list[float]:
+    """Values of a formula pp, where x is the 1-based position in the level range given by
+    " for n", else by the second argument ("6 to 18 by 1"), else levels 1 to 18."""
+    spec, _, count = t.args[0].partition(" for ")
+    if count.strip().isdigit():
+        n = int(count)
+    else:
+        n = len(_expand_range(t.args[1], 18)) if len(t.args) > 1 else 18
+    return [v for i in range(1, n + 1) if (v := _eval(spec.replace("x", f"({i})"))) is not None]
+
+
+def _render_values(t: Template) -> str:
+    """Display text of an ap, gs or pp template, without its unit."""
+    a = t.args
+    if t.name == "ap":
+        return " / ".join(render(x) for x in a) if len(a) > 1 else render(_drop_count(a[0]))
+    if (t.name == "gs" or _is_formula(t)) and (v := _template_values(t)):  # a formula over levels
+        return " to ".join(f"{round(x, 2):g}" for x in (v[0], v[-1]) if len(v) > 1 or x is v[0])
+    if t.name == "pp":
+        return render("; ".join(_drop_count(p) for p in a[0].split(";")).replace("; ", " / "))
+    return ""
 
 
 def _render_template(t: Template) -> str:
@@ -137,13 +166,8 @@ def _render_template(t: Template) -> str:
         return f"{render(a[0])} {_CURRENCY[name]}"
     if name == "rd":
         return f"{render(a[0])} (melee) / {render(a[1])} (ranged)" if len(a) > 1 else render(a[0])
-    if name == "ap":
-        if len(a) > 1:
-            return " / ".join(render(x) for x in a)
-        return render(_drop_count(a[0]))
-    if name == "pp":
-        spec = "; ".join(_drop_count(p) for p in a[0].split(";"))
-        return render(spec.replace("; ", " / "))
+    if name in ("ap", "gs", "pp"):
+        return _render_values(t) + t.kwargs.get("key", "").strip()  # key is the unit, e.g. "%"
     if name in ("sti", "stil"):
         return render(a[-1])
     return render(a[0])  # as, sbc, fd, tt, adaptive, recurring, and anything unknown
@@ -232,11 +256,26 @@ def _template_values(t: Template) -> list[float] | None:
         if len(t.args) > 1:
             return [v for x in t.args if (v := _eval(x)) is not None]
         return _expand_range(t.args[0], 5) if t.args else []
+    if t.name == "gs":  # {{gs|base|growth|from level|to level}}: the champion stat growth formula
+        got = [v for x in t.args[:4] if (v := _eval(x)) is not None]
+        if len(got) < min(len(t.args), 4):
+            return []
+        base, growth, lo, hi = got + [0.0, 0.0, 1.0, 18.0][len(got) :]
+        return [base + growth * (n - 1) * (0.7025 + 0.0175 * (n - 1)) for n in range(int(lo), int(hi) + 1)]
     if t.name == "pp" and t.args:
+        if _is_formula(t):
+            return _formula_values(t)
         pieces = t.args[0].split(";")
         if len(pieces) == 1:
             return _expand_range(pieces[0], 18)
-        return [v for p in pieces for v in _expand_range(p, 2)]
+        # Explicit levels that end in a formula ("42; 114; ...; 590; then + 50*x"): keep the explicit
+        # ones if there are at least three; fewer would compare one or two levels out of 18.
+        lead = list(itertools.takewhile(lambda p: "x" not in p, pieces))
+        return (
+            [v for p in lead for v in _expand_range(p, 2)]
+            if len(lead) >= 3 or len(lead) == len(pieces)
+            else []
+        )
     if t.name == "rd" and len(t.args) >= 2:
         return [v for x in t.args[:2] if (v := _eval(render(x))) is not None]
     return None
@@ -267,7 +306,8 @@ def values(text: str) -> list[float]:
 
 
 def rel_change(old: list[float], new: list[float]) -> float | None:
-    """Mean relative change across ranks; a single value is compared with every rank."""
+    """Mean of (new - old) / |old| across ranks, so the sign is the direction the number moved even
+    when it is negative; a single value is compared with every rank."""
     if not old or not new:
         return None
     if len(old) != len(new):
@@ -280,7 +320,64 @@ def rel_change(old: list[float], new: list[float]) -> float | None:
     pairs = [(o, n) for o, n in zip(old, new) if o != 0]
     if not pairs:
         return None
-    return sum(n / o - 1 for o, n in pairs) / len(pairs)
+    return sum((n - o) / abs(o) for o, n in pairs) / len(pairs)
+
+
+# The first value on one side of a change: a number or run of numbers ("25 / 35%", "10 to 30%",
+# "40*0.8%"), then its unit, if any: a "%" or the next word.
+_VALUE = re.compile(
+    r"(?<![\w.])-?(?:\d+(?:\.\d+)?|\.\d+)(?:\s*%?\s*(?:/|to|\*)\s*-?(?:\d+(?:\.\d+)?|\.\d+))*(?P<pct>\s*%)?\s*(?P<word>[a-z]+)?",
+    re.IGNORECASE,
+)
+_UNITS = {"second": "s", "seconds": "s", "minute": "min", "minutes": "min", "unit": "units", "units": "units"}
+# What a value is of ("% bonus AD", "bonus magic resistance", "of your maximum health"), from the words
+# after it: the first stat word, and the first qualifier
+_STATS = re.compile(
+    r"\b(AD|AP|health|mana|armor|resistance|damage|attack speed|movement speed|haste|tenacity|"
+    r"critical strike chance|lethality|penetration|gold|experience)\b",
+    re.IGNORECASE,
+)
+_QUALIFIERS = re.compile(r"\b(bonus|total|base|maximum|current|missing)\b", re.IGNORECASE)
+
+
+@dataclass
+class _Shape:
+    unit: str  # "%", "s", "min", "units" or "" for none
+    stat: str | None
+    qualifier: str | None
+    per_minute: bool  # "250 (+ 250 per minute from match start)"
+
+
+def _shape(side: str) -> _Shape | None:
+    """What kind of value one side of a change holds, from its plain text; None when it is prose,
+    i.e. three or more words come before the first number."""
+    side = re.sub(r"\s*\((?:melee|ranged)\)", "", side)  # "8 (melee) / 6 (ranged)%"
+    m = _VALUE.search(side)
+    if m is None or len(re.findall(r"[A-Za-z]+", side[: m.start()])) >= 3:
+        return None
+    unit = "%" if m.group("pct") or "%" in m.group(0) else _UNITS.get((m.group("word") or "").lower(), "")
+    rest = side[m.start("word") if m.group("word") else m.end() :]
+    after = " ".join(rest.split("(")[0].split()[:6])  # "(+ 30% AP)" is a second value
+    stat, qual = _STATS.search(after), _QUALIFIERS.search(after)
+    return _Shape(
+        unit,
+        stat and stat.group(1).lower(),
+        qual and qual.group(1).lower(),
+        "per minute" in side,
+    )
+
+
+def comparable(old: str, new: str) -> bool:
+    """Whether the old and new plain text hold the same kind of value, so their ratio means
+    something: neither is prose, they do not mix % with flat values, seconds with units, or
+    level scaling with per-minute scaling, and they name the same stat and qualifier where both
+    name one ("50% bonus AD" vs "15% total AD" is not comparable)."""
+    a, b = _shape(old), _shape(new)
+    if a is None or b is None or a.per_minute != b.per_minute:
+        return False
+    if a.unit != b.unit and ("%" in (a.unit, b.unit) or "" not in (a.unit, b.unit)):
+        return False
+    return all(x is None or y is None or x == y for x, y in ((a.stat, b.stat), (a.qualifier, b.qualifier)))
 
 
 # ---------------------------------------------------------------- lines
@@ -351,7 +448,7 @@ def make_line(text: str, ability: str | None, prefix: str, tag: str | None, cosm
     got = split_change(text)
     attr = _LINE_TAG.sub("", render(got[0]) if got else raw)
     old, new = (render(got[1]) or None, render(got[2]) or None) if got else (None, None)
-    rel = rel_change(values(got[1]), values(got[2])) if got else None
+    rel = rel_change(values(got[1]), values(got[2])) if got and old and new and comparable(old, new) else None
     looks = bool(_COSMETIC.search(prefix + raw))
     bug = tag is not None and "bug" in tag.lower()
     # A bug fix that moves a number ("Critical damage reduced to 75% AD from 100% AD") still counts
