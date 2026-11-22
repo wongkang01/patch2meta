@@ -39,7 +39,7 @@ Fill in names. Each person's instructions are in [`docs/tasks/`](docs/tasks/).
 | # | Owner | Owns | Writes |
 |---|---|---|---|
 | 1 | | Notes: fetch, strip mid-patch sections, split into blocks, parse numbers | `changes.jsonl` |
-| 2 | | Pro data: labels, patch mapping, Fearless flags, relation graph; shared eval code | `labels.parquet`, relation graph |
+| 2 | Jovita | Pro data: labels, pre-patch statistics, patch mapping, Fearless flags, relation graph; shared eval code | `labels.parquet`, `prepatch_stats.parquet`, relation graph |
 | 3 | | CommunityDragon diffs and ability text, LightGBM, graph stage | `predictions/lightgbm.csv`, `predictions/graph.csv` |
 | 4 | | Text models (DeBERTa-v3, ModernBERT), Qwen3-8B QLoRA, ablations, GPU bookings | `predictions/<model>.csv` |
 | 5 | | Block labelling with an LLM, crowd and zero-shot LLM baselines, demo, release | `block_labels.jsonl`, `predictions/crowd.csv` |
@@ -61,13 +61,23 @@ Validate rows against it before writing, and change a contract only in a PR that
 | `data/processed/changes.jsonl` | `ChangeBlock` | 1 |
 | `data/processed/changes_sample.csv` | 150 gameplay `ChangeBlock`s for hand labelling | 1 |
 | `data/processed/block_labels.jsonl` | `BlockLabel` | 5 |
-| `data/processed/labels.parquet` | `ChampionPatch` | 2 |
+| `data/processed/labels.parquet` (train and dev) | `ChampionPatch` | 2 |
+| `data/private/labels_test.parquet` (2026 test rows; scored only in the single test run after the freeze) | `ChampionPatch` | 2 |
+| `data/processed/prepatch_stats.parquet` (model inputs, all splits) | `PrePatchStats` | 2 |
+| `data/processed/patch_map.csv` | `PatchMapRow` | 2 |
+| `data/processed/relation_graph.parquet` | `RelationEdge` | 2 |
 | `data/predictions/<model>.csv` | `Prediction` | 3, 4, 5 |
+
+Read patch IDs as strings, `pd.read_csv(path, dtype={"patch": str})`, because a file that holds only 2026 patches turns `26.10` into `26.1` on a plain read.
+A predictions file has one row per `prepatch_stats.parquet` row of the scored split, and a NaN prediction counts as a missing row.
+Rows flagged `new_champion` are scored as their own stratum, outside the headline numbers.
 
 `data/processed/` is committed, so `git pull` brings the latest files.
 `data/processed/MANIFEST.md` lists each file's current version, build date and row count; bump it in the same commit as the file.
 File names stay fixed so nobody's code breaks; older versions are in git history.
-`data/raw/` (60 MB) stays local and is rebuilt by the fetch script.
+`data/raw/` (60 MB) stays local and is rebuilt by the fetch script and `pro download`.
+The variant builds in `data/processed/variants/` (one full build per data choice) stay out of git, except `comparison.json`.
+The 2026 test labels are committed in `data/private/labels_test.parquet`; nobody scores them before the single test run after the freeze.
 
 ## Block labels
 
@@ -80,6 +90,17 @@ One person labels 100 random blocks, sampled across eras and block kinds, withou
 Train on 2019 to 2024 patches, dev on 2025, test on 2026 (26.01 to 26.20), scored once after the model freeze.
 Primary metric: mean within-patch Spearman between predicted and realised Δpresence, for changed, unchanged and all champions.
 All models are scored by the same code in `src/patch2meta/eval/`.
+Model inputs use only games played before cut(P), 00:00 UTC on the day before P's release date, when the notes are usually out.
+Inputs for a 2026 patch hold the outcomes of earlier 2026 patches, so use the 2026 and 26.22 rows of `prepatch_stats.parquet` and `relation_graph.parquet` only for the frozen models' predictions.
+
+```bash
+uv run python -m patch2meta.pro download     # raw pro data into data/raw/pro/ (Leaguepedia rate-limits; allow time)
+uv run python -m patch2meta.pro build        # games, patch map, labels, pre-patch statistics, relation graph
+uv run python -m patch2meta.pro variants     # one build per open data choice in data/processed/variants/, compared
+uv run python -m patch2meta.eval baselines   # no_change, last_delta, mean_reversion
+uv run python -m patch2meta.eval score --split dev
+uv run python -m patch2meta.pro share        # optional: data/share/, a bundle with train and dev rows only
+```
 
 ## Conventions
 

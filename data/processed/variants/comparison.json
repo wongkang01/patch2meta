@@ -1,0 +1,293 @@
+{
+  "label_move": 0.02,
+  "builds": [
+    {
+      "name": "default",
+      "question": null,
+      "description": "Today's build",
+      "flags": [],
+      "games": 109095,
+      "fearless_games": 23577,
+      "kept": 174,
+      "train": 130,
+      "dev": 24,
+      "test": 19,
+      "last_delta": -0.146,
+      "mean_reversion": 0.152,
+      "ceiling_dev": 0.895,
+      "pre_cut_share_dev": 0.609
+    },
+    {
+      "name": "a4-game1",
+      "question": "A4",
+      "description": "In Fearless series, count game 1 only",
+      "flags": [
+        "--fearless-games",
+        "first"
+      ],
+      "games": 95588,
+      "fearless_games": 10070,
+      "kept": 171,
+      "train": 130,
+      "dev": 22,
+      "test": 19,
+      "last_delta": -0.168,
+      "mean_reversion": 0.195,
+      "ceiling_dev": 0.908,
+      "pre_cut_share_dev": 0.635,
+      "dev_patches_shared": 22,
+      "mean_reversion_shared": [
+        0.158,
+        0.195
+      ],
+      "ceiling_shared": [
+        0.905,
+        0.908
+      ],
+      "patches_lost": 2,
+      "patches_gained": 0,
+      "label_patches_changed": 40,
+      "prev_patch_changed": 2,
+      "rank_agreement_dev": 0.775,
+      "mean_abs_input_move": 0.0045
+    },
+    {
+      "name": "b3-drop-blind",
+      "question": "B3",
+      "description": "Drop games without bans whose series has bans in other games",
+      "flags": [
+        "--no-ban-games",
+        "drop-blind"
+      ],
+      "games": 108949,
+      "fearless_games": 23531,
+      "kept": 174,
+      "train": 130,
+      "dev": 24,
+      "test": 19,
+      "last_delta": -0.145,
+      "mean_reversion": 0.151,
+      "ceiling_dev": 0.894,
+      "pre_cut_share_dev": 0.609,
+      "dev_patches_shared": 24,
+      "mean_reversion_shared": [
+        0.152,
+        0.151
+      ],
+      "ceiling_shared": [
+        0.895,
+        0.894
+      ],
+      "patches_lost": 0,
+      "patches_gained": 0,
+      "label_patches_changed": 7,
+      "prev_patch_changed": 0,
+      "rank_agreement_dev": 0.999,
+      "mean_abs_input_move": 0.0003
+    },
+    {
+      "name": "b3-drop-all",
+      "question": "B3",
+      "description": "Drop every game without bans",
+      "flags": [
+        "--no-ban-games",
+        "drop-all"
+      ],
+      "games": 108170,
+      "fearless_games": 23039,
+      "kept": 170,
+      "train": 127,
+      "dev": 24,
+      "test": 18,
+      "last_delta": -0.141,
+      "mean_reversion": 0.155,
+      "ceiling_dev": 0.895,
+      "pre_cut_share_dev": 0.609,
+      "dev_patches_shared": 24,
+      "mean_reversion_shared": [
+        0.152,
+        0.155
+      ],
+      "ceiling_shared": [
+        0.895,
+        0.895
+      ],
+      "patches_lost": 3,
+      "patches_gained": 0,
+      "label_patches_changed": 20,
+      "prev_patch_changed": 3,
+      "rank_agreement_dev": 0.997,
+      "mean_abs_input_move": 0.0026
+    },
+    {
+      "name": "c3-release-day",
+      "question": "C3",
+      "description": "Forecast time is 00:00 UTC on the release day",
+      "flags": [
+        "--cut",
+        "release-day"
+      ],
+      "games": 109095,
+      "fearless_games": 23577,
+      "kept": 174,
+      "train": 130,
+      "dev": 24,
+      "test": 19,
+      "last_delta": -0.143,
+      "mean_reversion": 0.153,
+      "ceiling_dev": 0.895,
+      "pre_cut_share_dev": 0.683,
+      "dev_patches_shared": 24,
+      "mean_reversion_shared": [
+        0.152,
+        0.153
+      ],
+      "ceiling_shared": [
+        0.895,
+        0.895
+      ],
+      "patches_lost": 0,
+      "patches_gained": 0,
+      "label_patches_changed": 0,
+      "prev_patch_changed": 0,
+      "rank_agreement_dev": 1.0,
+      "mean_abs_input_move": 0.0067
+    },
+    {
+      "name": "d1-major",
+      "question": "D1",
+      "description": "Major regions' top leagues and international events only",
+      "flags": [
+        "--leagues",
+        "major"
+      ],
+      "games": 16031,
+      "fearless_games": 4309,
+      "kept": 83,
+      "train": 59,
+      "dev": 13,
+      "test": 11,
+      "last_delta": -0.129,
+      "mean_reversion": 0.192,
+      "ceiling_dev": 0.854,
+      "pre_cut_share_dev": 0.692,
+      "dev_patches_shared": 13,
+      "mean_reversion_shared": [
+        0.166,
+        0.192
+      ],
+      "ceiling_shared": [
+        0.911,
+        0.854
+      ],
+      "patches_lost": 82,
+      "patches_gained": 0,
+      "label_patches_changed": 71,
+      "prev_patch_changed": 25,
+      "rank_agreement_dev": 0.469,
+      "mean_abs_input_move": 0.0594
+    },
+    {
+      "name": "d1-major-second",
+      "question": "D1",
+      "description": "Major leagues, international events and second divisions",
+      "flags": [
+        "--leagues",
+        "major-second"
+      ],
+      "games": 31314,
+      "fearless_games": 7524,
+      "kept": 115,
+      "train": 83,
+      "dev": 16,
+      "test": 16,
+      "last_delta": -0.148,
+      "mean_reversion": 0.162,
+      "ceiling_dev": 0.886,
+      "pre_cut_share_dev": 0.7,
+      "dev_patches_shared": 16,
+      "mean_reversion_shared": [
+        0.156,
+        0.162
+      ],
+      "ceiling_shared": [
+        0.907,
+        0.886
+      ],
+      "patches_lost": 55,
+      "patches_gained": 0,
+      "label_patches_changed": 98,
+      "prev_patch_changed": 20,
+      "rank_agreement_dev": 0.492,
+      "mean_abs_input_move": 0.0499
+    },
+    {
+      "name": "d3-min200",
+      "question": "D3",
+      "description": "A kept patch needs 200 games",
+      "flags": [
+        "--min-patch-games",
+        "200"
+      ],
+      "games": 109095,
+      "fearless_games": 23577,
+      "kept": 147,
+      "train": 106,
+      "dev": 22,
+      "test": 19,
+      "last_delta": -0.129,
+      "mean_reversion": 0.152,
+      "ceiling_dev": 0.896,
+      "pre_cut_share_dev": 0.609,
+      "dev_patches_shared": 22,
+      "mean_reversion_shared": [
+        0.152,
+        0.152
+      ],
+      "ceiling_shared": [
+        0.896,
+        0.896
+      ],
+      "patches_lost": 26,
+      "patches_gained": 0,
+      "label_patches_changed": 16,
+      "prev_patch_changed": 16,
+      "rank_agreement_dev": 1.0,
+      "mean_abs_input_move": 0.008
+    },
+    {
+      "name": "d3-min300",
+      "question": "D3",
+      "description": "A kept patch needs 300 games",
+      "flags": [
+        "--min-patch-games",
+        "300"
+      ],
+      "games": 109095,
+      "fearless_games": 23577,
+      "kept": 127,
+      "train": 90,
+      "dev": 19,
+      "test": 18,
+      "last_delta": -0.121,
+      "mean_reversion": 0.155,
+      "ceiling_dev": 0.911,
+      "pre_cut_share_dev": 0.604,
+      "dev_patches_shared": 19,
+      "mean_reversion_shared": [
+        0.14,
+        0.155
+      ],
+      "ceiling_shared": [
+        0.904,
+        0.911
+      ],
+      "patches_lost": 45,
+      "patches_gained": 0,
+      "label_patches_changed": 19,
+      "prev_patch_changed": 19,
+      "rank_agreement_dev": 0.944,
+      "mean_abs_input_move": 0.0118
+    }
+  ]
+}
