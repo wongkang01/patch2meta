@@ -61,7 +61,8 @@ Validate rows against it before writing, and change a contract only in a PR that
 | `data/processed/changes.jsonl` | `ChangeBlock` | 1 |
 | `data/processed/changes_sample.csv` | 150 gameplay `ChangeBlock`s for hand labelling | 1 |
 | `data/processed/block_labels.jsonl` | `BlockLabel` | 5 |
-| `data/processed/labels.parquet` (train and dev; test labels stay with Person 2 until the single test run) | `ChampionPatch` | 2 |
+| `data/processed/labels.parquet` (train and dev) | `ChampionPatch` | 2 |
+| `data/private/labels_test.parquet` (2026 test rows; scored only in the single test run after the freeze) | `ChampionPatch` | 2 |
 | `data/processed/prepatch_stats.parquet` (model inputs, all splits) | `PrePatchStats` | 2 |
 | `data/processed/patch_map.csv` | `PatchMapRow` | 2 |
 | `data/processed/relation_graph.parquet` | `RelationEdge` | 2 |
@@ -75,7 +76,8 @@ Rows flagged `new_champion` are scored as their own stratum, outside the headlin
 `data/processed/MANIFEST.md` lists each file's current version, build date and row count; bump it in the same commit as the file.
 File names stay fixed so nobody's code breaks; older versions are in git history.
 `data/raw/` (60 MB) stays local and is rebuilt by the fetch script and `pro download`.
-Two pro-data folders stay out of git: `data/processed/variants/` (one full build per data choice; only `comparison.json` is committed) and `data/private/` (the test labels, kept by Person 2 until the single test run).
+The variant builds in `data/processed/variants/` (one full build per data choice) stay out of git, except `comparison.json`.
+The 2026 test labels are committed in `data/private/labels_test.parquet`; nobody scores them before the single test run after the freeze.
 
 ## Block labels
 

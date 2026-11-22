@@ -4,6 +4,10 @@ data/*
 # Pro data variants: one full build per data choice (144 MB); only the comparison is committed
 data/processed/variants/*
 !data/processed/variants/comparison.json
+# The 2026 test labels are committed; score them only in the single test run after the freeze
+!data/private/
+data/private/*
+!data/private/labels_test.parquet
 .venv/
 __pycache__/
 *.egg-info/

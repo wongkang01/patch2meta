@@ -40,7 +40,9 @@ def load_labels(splits: list[str], agree_to_test: bool = False, rescore_test: bo
         if not agree_to_test:
             raise TestSplitGuard("the test split runs once, after the freeze: pass --i-agree-to-score-test")
         if not LABELS_TEST.exists():
-            raise TestSplitGuard(f"{LABELS_TEST} is not here; person 2 holds the test labels")
+            raise TestSplitGuard(
+                f"{LABELS_TEST} is not here; it is committed in git, so pull the latest main"
+            )
         earlier = TEST_LOG.read_text().splitlines() if TEST_LOG.exists() else []
         if earlier and not rescore_test:
             raise TestSplitGuard(

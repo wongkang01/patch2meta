@@ -83,8 +83,8 @@ class BlockLabel(BaseModel):
 class ChampionPatch(BaseModel):
     """One champion on one pro patch: the target, written by person 2.
 
-    data/processed/labels.parquet holds train and dev rows. The 2026 test rows are held back in
-    data/private/labels_test.parquet until the single test run after the model freeze.
+    data/processed/labels.parquet holds train and dev rows. The 2026 test rows are in
+    data/private/labels_test.parquet; score them only in the single test run after the model freeze.
 
     Rows exist for every champion released before the next Riot patch after P (P's notes announce
     new champions), drafted or not, so the row set reveals nothing about games on P. A champion drafted on neither P nor P' has presence 0

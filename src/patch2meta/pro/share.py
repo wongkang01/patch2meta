@@ -40,7 +40,7 @@ def sha256(path: Path) -> str:
 def build_share(data: Path, out: Path, include_test: bool = False) -> dict[str, int]:
     """Write the shareable files to `out` and return their row counts.
 
-    Labels are always train and dev only: test labels stay with Person 2, even after the freeze.
+    The bundle's labels are always train and dev only, even with --include-test.
     """
     split = load_patch_map(data / "patch_map.csv").set_index("patch")["split"]
     out.mkdir(parents=True, exist_ok=True)

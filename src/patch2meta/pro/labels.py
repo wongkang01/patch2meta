@@ -2,7 +2,7 @@
 
 Writes:
   data/processed/labels.parquet          ChampionPatch rows for train and dev (shared)
-  data/private/labels_test.parquet       ChampionPatch rows for test (held back until the test run)
+  data/private/labels_test.parquet       ChampionPatch rows for test (scored only in the single test run)
   data/processed/prepatch_stats.parquet  PrePatchStats rows for every kept patch, all splits
 
 Targets use all games on P and P'. Inputs use only games dated before cut(P), the forecast time.
